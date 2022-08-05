@@ -1,4 +1,4 @@
-# ZoweCliTeamConfigAnalyze  
+# Zowe CLI Global Team Config Analyze Tool  
   
 This project provides small programs to inspect the way the Zowe CLI Global Team Configuration is used for gathering Zowe CLI configuration and authentication information.  
   
