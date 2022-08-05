@@ -1,1 +1,1 @@
-"# ZoweCliTeamConfigAnalyze
+# ZoweCliTeamConfigAnalyze
