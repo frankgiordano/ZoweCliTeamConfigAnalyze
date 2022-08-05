@@ -1,12 +1,12 @@
-package zowecli;
+package zowecli.keytar;
 
-public class Config {
+public class KeyTarConfig {
 
     private String location;
     private String userName;
     private String password;
 
-    public Config(String location, String userName, String password) {
+    public KeyTarConfig(String location, String userName, String password) {
         this.location = location;
         this.userName = userName;
         this.password = password;
@@ -26,7 +26,7 @@ public class Config {
 
     @Override
     public String toString() {
-        return "teamconfig.Config{" +
+        return "KeyTarConfig{" +
                 "location='" + location + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +

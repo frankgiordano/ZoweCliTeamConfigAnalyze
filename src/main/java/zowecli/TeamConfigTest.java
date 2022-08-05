@@ -3,17 +3,18 @@ package zowecli;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import zowecli.keytar.KeyTarConfig;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-public class TeamConfig {
+public class TeamConfigTest {
 
     public static void main(String[] args) throws ParseException {
 
-        List<Config> configList = ConfigKeyTar.processJson(ConfigKeyTar.getSingleJsonString());
-        Config config = configList.get(0);
+        List<KeyTarConfig> configList = KeyTarTest.processJson(KeyTarTest.getSingleJsonString());
+        KeyTarConfig config = configList.get(0);
 
         JSONParser parser = new JSONParser();
         Object obj;
