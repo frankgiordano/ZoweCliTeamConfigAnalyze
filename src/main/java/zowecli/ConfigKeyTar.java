@@ -62,7 +62,7 @@ public class ConfigKeyTar {
 //        },
 //            "C:\\Users\\fg892105\\IdeaProjects\\ZoweCCSSVCSymptomsReport\\zowe.config.json": {
 //            "profiles.base.properties.user": "fg892105",
-//                    "profiles.base.properties.password": "javasdk1"
+//                    "profiles.base.properties.password": "fakepw"
 //        }
 //        }
         return "{\"C:\\\\Users\\\\fg892105\\\\zowe.config.json\":{\"profiles.base.properties.user\":" +

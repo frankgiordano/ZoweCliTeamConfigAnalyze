@@ -12,7 +12,7 @@ Executing ConfigKeyTar.main() method, the following example output will be produ
 
 eyJDOlxcVXNlcnNcXGZnODkyMTA1XFx6b3dlLmNvbmZpZy5qc29uIjp7InByb2ZpbGVzLmJhc2UucHJvcGVydGllcy51c2VyIjoiQ0NTQVVUTyIsInByb2ZpbGVzLmJhc2UucHJvcGVydGllcy5wYXNzd29yZCI6IkNDU0FVVE8ifSwiQzpcXFVzZXJzXFxmZzg5MjEwNVxcSWRlYVByb2plY3RzXFxab3dlQ0NTU1ZDU3ltcHRvbXNSZXBvcnRcXHpvd2UuY29uZmlnLmpzb24iOnsicHJvZmlsZXMuYmFzZS5wcm9wZXJ0aWVzLnVzZXIiOiJmZzg5MjEwNSIsInByb2ZpbGVzLmJhc2UucHJvcGVydGllcy5wYXNzd29yZCI6ImphdmFzZGsxIn19
   
-{"C:\\Users\\fg892105\\zowe.config.json":{"profiles.base.properties.user":"CCSAUTO","profiles.base.properties.password":"CCSAUTO"},"C:\\Users\\fg892105\\IdeaProjects\\ZoweCCSSVCSymptomsReport\\zowe.config.json":{"profiles.base.properties.user":"fg892105","profiles.base.properties.password":"javasdk1"}}
+{"C:\\Users\\fg892105\\zowe.config.json":{"profiles.base.properties.user":"CCSAUTO","profiles.base.properties.password":"CCSAUTO"},"C:\\Users\\fg892105\\IdeaProjects\\ZoweCCSSVCSymptomsReport\\zowe.config.json":{"profiles.base.properties.user":"fg892105","profiles.base.properties.password":"fakepw"}}
 teamconfig.Config{location='C:\Users\fg892105\zowe.config.json', userName='CCSAUTO', password='CCSAUTO'}
 teamconfig.Config{location='C:\Users\fg892105\IdeaProjects\ZoweCCSSVCSymptomsReport\zowe.config.json', userName='fg892105', password='fakepw'}
   
