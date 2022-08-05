@@ -23,3 +23,9 @@ teamconfig.Config{location='C:\Users\fg892105\IdeaProjects\ZoweCCSSVCSymptomsRep
 {"C:\\Users\\fg892105\\zowe.config.json":{"profiles.base.properties.user":"CCSAUTO","profiles.base.properties.password":"fakepw"}}
 teamconfig.Config{location='C:\Users\fg892105\zowe.config.json', userName='CCSAUTO', password='fakepw'}  
   
+## Requirements  
+  
+  Java 11  
+  Maven  
+   
+  
