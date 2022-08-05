@@ -14,7 +14,7 @@ eyJDOlxcVXNlcnNcXGZnODkyMTA1XFx6b3dlLmNvbmZpZy5qc29uIjp7InByb2ZpbGVzLmJhc2UucHJv
   
 {"C:\\Users\\fg892105\\zowe.config.json":{"profiles.base.properties.user":"CCSAUTO","profiles.base.properties.password":"CCSAUTO"},"C:\\Users\\fg892105\\IdeaProjects\\ZoweCCSSVCSymptomsReport\\zowe.config.json":{"profiles.base.properties.user":"fg892105","profiles.base.properties.password":"javasdk1"}}
 teamconfig.Config{location='C:\Users\fg892105\zowe.config.json', userName='CCSAUTO', password='CCSAUTO'}
-teamconfig.Config{location='C:\Users\fg892105\IdeaProjects\ZoweCCSSVCSymptomsReport\zowe.config.json', userName='fg892105', password='javasdk1'}
+teamconfig.Config{location='C:\Users\fg892105\IdeaProjects\ZoweCCSSVCSymptomsReport\zowe.config.json', userName='fg892105', password='fakepw'}
   
 {"C:\\Users\\fg892105\\zowe.config.json":{"profiles.base.properties.user":"CCSAUTO","profiles.base.properties.password":"fakepw"},"C:\\Users\\fg892105\\IdeaProjects\\ZoweCCSSVCSymptomsReport\\zowe.config.json":{"profiles.base.properties.user":"fg892105","profiles.base.properties.password":"fakepw"}}
 teamconfig.Config{location='C:\Users\fg892105\zowe.config.json', userName='CCSAUTO', password='fakepw'}
