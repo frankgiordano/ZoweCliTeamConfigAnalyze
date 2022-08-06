@@ -47,6 +47,10 @@ public class TeamConfigTest {
             }
             if (SectionType.PROFILES.getValue().equals(key)) {
                 System.out.println("INSIDE " + SectionType.PROFILES);
+                // At this point, the JSON will consist of a bunch of profile type sections.
+                // The first section may not be of a profile type. Let's check the first profile
+                // section and determine if it contains a profile type value, if not then it is a
+                // partition section, and we need to parse each partition and its profiles.
             }
             if (SectionType.DEFAULTS.getValue().equals(key)) {
                 System.out.println("INSIDE " + SectionType.DEFAULTS);
