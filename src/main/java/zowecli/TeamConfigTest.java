@@ -43,6 +43,7 @@ public class TeamConfigTest {
             String key = (String) keyObj;
             if (SectionType.$SCHEMA.getValue().equals(key)) {
                 System.out.println("INSIDE " + SectionType.$SCHEMA);
+                schema = new Schema((String) jsonObj.get(SectionType.$SCHEMA.getValue()));
             }
             if (SectionType.PROFILES.getValue().equals(key)) {
                 System.out.println("INSIDE " + SectionType.PROFILES);
@@ -55,7 +56,7 @@ public class TeamConfigTest {
             }
             Object valObj = jsonObj.get(key);
             if (valObj instanceof JSONObject) {
-                // call printJSON on nested object
+                // call parseJson on nested object
                 parseJson((JSONObject) valObj);
             } else {
                 // print key-value pair
