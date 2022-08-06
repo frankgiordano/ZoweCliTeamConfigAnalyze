@@ -10,7 +10,6 @@ import zowecli.globalteamconfig.types.SectionType;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.zone.ZoneRulesException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,12 +28,12 @@ public class TeamConfigTest {
             obj = parser.parse(getTeamConfigJsonString());
         }
         JSONObject jsonObject = (JSONObject) obj;
-        printJson(jsonObject);
+        parseJson(jsonObject);
         System.out.println();
         System.out.println(jsonObject);
     }
 
-    public static void printJson(JSONObject jsonObj) {
+    public static ZoweTeamConfig parseJson(JSONObject jsonObj) {
         Schema schema = null;
         List<Profile> profiles = new ArrayList<>();
         Defaults defaults = null;
@@ -57,14 +56,14 @@ public class TeamConfigTest {
             Object valObj = jsonObj.get(key);
             if (valObj instanceof JSONObject) {
                 // call printJSON on nested object
-                printJson((JSONObject) valObj);
+                parseJson((JSONObject) valObj);
             } else {
                 // print key-value pair
                 System.out.println("key : " + key);
                 System.out.println("value : " + valObj.toString());
             }
         }
-        ZoweTeamConfig zoweTeamConfig = new ZoweTeamConfig(partitions, schema, profiles, defaults, autoStore);
+        return new ZoweTeamConfig(partitions, schema, profiles, defaults, autoStore);
     }
 
     public static String getTeamConfigJsonString() {
