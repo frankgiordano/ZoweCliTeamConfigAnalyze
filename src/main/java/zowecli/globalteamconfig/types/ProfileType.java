@@ -1,4 +1,4 @@
-package zowecli.zoweconfig.types;
+package zowecli.globalteamconfig.types;
 
 public enum ProfileType {
 

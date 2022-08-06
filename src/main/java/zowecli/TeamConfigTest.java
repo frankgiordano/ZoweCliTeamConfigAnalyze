@@ -4,7 +4,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import zowecli.keytar.KeyTarConfig;
-import zowecli.zoweconfig.types.SectionType;
+import zowecli.globalteamconfig.types.SectionType;
 
 import java.io.FileReader;
 import java.io.IOException;
