@@ -4,7 +4,9 @@ This project provides small programs to inspect the way the [Zowe CLI](https://g
 
 The source code demonstrates a way to read from the OS credential store where Zowe CLI stores its username, password, and team config file path information. The code shows how this can be read and decrypted.  
   
-More over, the code demonstrates JSON parsing of the prudent objects from the credential store and team configuration file.  
+Moreover, the code demonstrates JSON parsing of the prudent objects from the credential store and team configuration file.  
+
+The intention of this project is to provide a test bed for developing and implementing Global Team Configuration processing of its profiles and authentication within the [Zowe Java SDK](https://github.com/zowe/zowe-client-java-sdk) project.
   
 ## KeyTarTest class
 
