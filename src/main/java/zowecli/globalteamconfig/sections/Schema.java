@@ -4,12 +4,12 @@ public class Schema {
 
     private String schema;
 
-    public String getSchema() {
-        return schema;
+    public Schema(String schema) {
+        this.schema = schema;
     }
 
-    public void setSchema(String schema) {
-        this.schema = schema;
+    public String getSchema() {
+        return schema;
     }
 
 }

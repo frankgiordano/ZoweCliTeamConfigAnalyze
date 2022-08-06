@@ -3,11 +3,15 @@ package zowecli;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import zowecli.globalteamconfig.config.ZoweTeamConfig;
+import zowecli.globalteamconfig.sections.*;
 import zowecli.keytar.KeyTarConfig;
 import zowecli.globalteamconfig.types.SectionType;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.zone.ZoneRulesException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TeamConfigTest {
@@ -31,6 +35,11 @@ public class TeamConfigTest {
     }
 
     public static void printJson(JSONObject jsonObj) {
+        Schema schema = null;
+        List<Profile> profiles = new ArrayList<>();
+        Defaults defaults = null;
+        AutoStore autoStore = null;
+        List<Partition> partitions = null;
         for (Object keyObj : jsonObj.keySet()) {
             String key = (String) keyObj;
             if (SectionType.$SCHEMA.getValue().equals(key)) {
@@ -55,6 +64,7 @@ public class TeamConfigTest {
                 System.out.println("value : " + valObj.toString());
             }
         }
+        ZoweTeamConfig zoweTeamConfig = new ZoweTeamConfig(partitions, schema, profiles, defaults, autoStore);
     }
 
     public static String getTeamConfigJsonString() {

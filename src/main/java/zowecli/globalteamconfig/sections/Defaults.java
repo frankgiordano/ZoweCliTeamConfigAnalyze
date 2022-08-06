@@ -9,52 +9,37 @@ public class Defaults {
     private String sysviewFormat;
     private String base;
 
-    public String getZosmf() {
-        return zosmf;
+    public Defaults(String zosmf, String tso, String ssh, String sysview, String sysviewFormat, String base) {
+        this.zosmf = zosmf;
+        this.tso = tso;
+        this.ssh = ssh;
+        this.sysview = sysview;
+        this.sysviewFormat = sysviewFormat;
+        this.base = base;
     }
 
-    public void setZosmf(String zosmf) {
-        this.zosmf = zosmf;
+    public String getZosmf() {
+        return zosmf;
     }
 
     public String getTso() {
         return tso;
     }
 
-    public void setTso(String tso) {
-        this.tso = tso;
-    }
-
     public String getSsh() {
         return ssh;
-    }
-
-    public void setSsh(String ssh) {
-        this.ssh = ssh;
     }
 
     public String getSysview() {
         return sysview;
     }
 
-    public void setSysview(String sysview) {
-        this.sysview = sysview;
-    }
-
     public String getSysviewFormat() {
         return sysviewFormat;
     }
 
-    public void setSysviewFormat(String sysviewFormat) {
-        this.sysviewFormat = sysviewFormat;
-    }
-
     public String getBase() {
         return base;
-    }
-
-    public void setBase(String base) {
-        this.base = base;
     }
 
 }
