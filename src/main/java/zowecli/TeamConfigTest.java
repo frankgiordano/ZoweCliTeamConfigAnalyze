@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import zowecli.keytar.KeyTarConfig;
+import zowecli.zoweconfig.types.SectionType;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -32,6 +33,18 @@ public class TeamConfigTest {
     public static void printJson(JSONObject jsonObj) {
         for (Object keyObj : jsonObj.keySet()) {
             String key = (String) keyObj;
+            if (SectionType.$SCHEMA.getValue().equals(key)) {
+                System.out.println("INSIDE " + SectionType.$SCHEMA);
+            }
+            if (SectionType.PROFILES.getValue().equals(key)) {
+                System.out.println("INSIDE " + SectionType.PROFILES);
+            }
+            if (SectionType.DEFAULTS.getValue().equals(key)) {
+                System.out.println("INSIDE " + SectionType.DEFAULTS);
+            }
+            if (SectionType.AUTOSTORE.getValue().equals(key)) {
+                System.out.println("INSIDE " + SectionType.AUTOSTORE);
+            }
             Object valObj = jsonObj.get(key);
             if (valObj instanceof JSONObject) {
                 // call printJSON on nested object
