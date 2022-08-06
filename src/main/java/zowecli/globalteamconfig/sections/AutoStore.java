@@ -12,4 +12,11 @@ public class AutoStore {
         return autoStore;
     }
 
+    @Override
+    public String toString() {
+        return "AutoStore{" +
+                "autoStore='" + autoStore + '\'' +
+                '}';
+    }
+    
 }

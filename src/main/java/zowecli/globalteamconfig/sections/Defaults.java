@@ -42,4 +42,16 @@ public class Defaults {
         return base;
     }
 
+    @Override
+    public String toString() {
+        return "Defaults{" +
+                "zosmf='" + zosmf + '\'' +
+                ", tso='" + tso + '\'' +
+                ", ssh='" + ssh + '\'' +
+                ", sysview='" + sysview + '\'' +
+                ", sysviewFormat='" + sysviewFormat + '\'' +
+                ", base='" + base + '\'' +
+                '}';
+    }
+
 }

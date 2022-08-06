@@ -12,4 +12,11 @@ public class Schema {
         return schema;
     }
 
+    @Override
+    public String toString() {
+        return "Schema{" +
+                "schema='" + schema + '\'' +
+                '}';
+    }
+
 }

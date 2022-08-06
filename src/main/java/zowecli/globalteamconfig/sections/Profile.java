@@ -26,4 +26,13 @@ public class Profile {
         return secure;
     }
 
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "type=" + type +
+                ", profileProperties=" + profileProperties +
+                ", secure='" + secure + '\'' +
+                '}';
+    }
+
 }

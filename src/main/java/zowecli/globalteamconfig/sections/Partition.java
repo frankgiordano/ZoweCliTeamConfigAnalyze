@@ -22,4 +22,13 @@ public class Partition {
         return profiles;
     }
 
+    @Override
+    public String toString() {
+        return "Partition{" +
+                "name='" + name + '\'' +
+                ", profileProperties=" + profileProperties +
+                ", profiles=" + profiles +
+                '}';
+    }
+
 }
