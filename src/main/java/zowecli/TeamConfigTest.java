@@ -5,17 +5,17 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import zowecli.globalteamconfig.config.ZoweTeamConfig;
 import zowecli.globalteamconfig.sections.*;
+import zowecli.globalteamconfig.types.ProfileType;
 import zowecli.keytar.KeyTarConfig;
 import zowecli.globalteamconfig.types.SectionType;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class TeamConfigTest {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws Exception {
 
         List<KeyTarConfig> configList = KeyTarTest.processJson(KeyTarTest.getSingleJsonString());
         KeyTarConfig config = configList.get(0);
@@ -33,7 +33,7 @@ public class TeamConfigTest {
         System.out.println(jsonObject);
     }
 
-    public static ZoweTeamConfig parseJson(JSONObject jsonObj) {
+    public static ZoweTeamConfig parseJson(JSONObject jsonObj) throws Exception {
         Schema schema = null;
         List<Profile> profiles = new ArrayList<>();
         Defaults defaults = null;
@@ -51,6 +51,22 @@ public class TeamConfigTest {
                 // The first section may not be of a profile type. Let's check the first profile
                 // section and determine if it contains a profile type value, if not then it is a
                 // partition section, and we need to parse each partition and its profiles.
+                JSONObject profileJsonObj = (JSONObject) jsonObj.get(SectionType.PROFILES.getValue());
+                System.out.println(profileJsonObj);
+                Set<String> profileKeyObj = profileJsonObj.keySet();
+                boolean isPartition = isPartition(profileKeyObj);
+                if (!isPartition) {
+                    Iterator<String> itr = profileKeyObj.iterator();
+                    if (itr.hasNext()) {
+                        String keyVal = itr.next();
+                        System.out.println("KeyVal = " + keyVal);
+                        JSONObject profileTypeJsonObj = (JSONObject) profileJsonObj.get(keyVal);
+                        Set<String> profileTypeKeyObj = profileTypeJsonObj.keySet();
+                        System.out.println(profileTypeKeyObj);
+                        // KeyVal = sysview
+                        // [type, secure, properties]
+                    }
+                }
             }
             if (SectionType.DEFAULTS.getValue().equals(key)) {
                 System.out.println("INSIDE " + SectionType.DEFAULTS);
@@ -69,6 +85,30 @@ public class TeamConfigTest {
             }
         }
         return new ZoweTeamConfig(partitions, schema, profiles, defaults, autoStore);
+    }
+
+    private static boolean isPartition(Set<String> profileKeyObj) throws Exception {
+        Iterator<String> itr = profileKeyObj.iterator();
+        if (itr.hasNext()) {
+            String keyVal = itr.next();
+            System.out.println("isPartition Keyval = " + keyVal);
+            isPartition(keyVal);
+        } else {
+            throw new Exception("Profile type detail missing in profile section.");
+        }
+        return false;
+    }
+
+    private static boolean isPartition(String type) {
+        if (ProfileType.SSH.getValue().equals(type) ||
+            ProfileType.BASE.getValue().equals(type) ||
+            ProfileType.SYSVIEW.getValue().equals(type) ||
+            ProfileType.SYSVIEWFORMAT.getValue().equals(type) ||
+            ProfileType.TSO.getValue().equals(type) ||
+            ProfileType.ZOSMF.getValue().equals(type)) {
+            return false;
+        }
+        return true;
     }
 
     public static String getTeamConfigJsonString() {

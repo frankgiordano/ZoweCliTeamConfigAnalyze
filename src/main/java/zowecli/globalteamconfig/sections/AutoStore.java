@@ -18,5 +18,5 @@ public class AutoStore {
                 "autoStore='" + autoStore + '\'' +
                 '}';
     }
-    
+
 }
