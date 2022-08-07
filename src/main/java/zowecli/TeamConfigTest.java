@@ -29,9 +29,10 @@ public class TeamConfigTest {
             obj = parser.parse(getTeamConfigJsonString());
         }
         JSONObject jsonObject = (JSONObject) obj;
-        parseJson(jsonObject);
+        ZoweTeamConfig result = parseJson(jsonObject);
         System.out.println();
         System.out.println(jsonObject);
+        System.out.println(result);
     }
 
     public static ZoweTeamConfig parseJson(JSONObject jsonObj) throws Exception {

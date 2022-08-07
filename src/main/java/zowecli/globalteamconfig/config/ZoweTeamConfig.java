@@ -40,5 +40,16 @@ public class ZoweTeamConfig {
     public AutoStore getAutoStore() {
         return autoStore;
     }
-    
+
+    @Override
+    public String toString() {
+        return "ZoweTeamConfig{" +
+                "partitions=" + partitions +
+                ", schema=" + schema +
+                ", profiles=" + profiles +
+                ", defaults=" + defaults +
+                ", autoStore=" + autoStore +
+                '}';
+    }
+
 }
