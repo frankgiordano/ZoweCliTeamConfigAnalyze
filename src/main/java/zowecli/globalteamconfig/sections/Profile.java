@@ -1,39 +1,44 @@
 package zowecli.globalteamconfig.sections;
 
-import zowecli.globalteamconfig.types.ProfileType;
-
-import java.util.Map;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class Profile {
 
-    private ProfileType type;
-    private Map<String, String> profileProperties;
-    private String secure;
+    private String name;
+    private JSONObject properties;
+    private JSONArray secure;
+    private String propertiesJsonValue;
 
-    public Profile(ProfileType type, Map<String, String> profileProperties, String secure) {
-        this.type = type;
-        this.profileProperties = profileProperties;
+    public Profile(String name, JSONObject properties, JSONArray secure) {
+        this.name = name;
+        this.properties = properties;
         this.secure = secure;
     }
 
-    public ProfileType getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 
-    public Map<String, String> getProfileProperties() {
-        return profileProperties;
+    public JSONObject getProperties() {
+        return properties;
     }
 
-    public String getSecure() {
+    public JSONArray getSecure() {
         return secure;
+    }
+
+    public String getPropertiesJsonValue() {
+        return propertiesJsonValue;
     }
 
     @Override
     public String toString() {
         return "Profile{" +
-                "type=" + type +
-                ", profileProperties=" + profileProperties +
+                "name='" + name + '\'' +
+                ", properties='" + properties + '\'' +
                 ", secure='" + secure + '\'' +
+                ", propertiesJsonValue='" + propertiesJsonValue + '\'' +
                 '}';
     }
 

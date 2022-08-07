@@ -1,5 +1,6 @@
 package zowecli;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -52,20 +53,21 @@ public class TeamConfigTest {
                 // section and determine if it contains a profile type value, if not then it is a
                 // partition section, and we need to parse each partition and its profiles.
                 JSONObject profileJsonObj = (JSONObject) jsonObj.get(SectionType.PROFILES.getValue());
-                System.out.println(profileJsonObj);
                 Set<String> profileKeyObj = profileJsonObj.keySet();
                 boolean isPartition = isPartition(profileKeyObj);
                 if (!isPartition) {
                     Iterator<String> itr = profileKeyObj.iterator();
-                    if (itr.hasNext()) {
+                    while (itr.hasNext()) {
                         String keyVal = itr.next();
-                        System.out.println("KeyVal = " + keyVal);
                         JSONObject profileTypeJsonObj = (JSONObject) profileJsonObj.get(keyVal);
-                        Set<String> profileTypeKeyObj = profileTypeJsonObj.keySet();
-                        System.out.println(profileTypeKeyObj);
-                        // KeyVal = sysview
-                        // [type, secure, properties]
+                        Profile profile = new Profile((String) profileTypeJsonObj.get("type"),
+                                (JSONObject) profileTypeJsonObj.get("properties"),
+                                (JSONArray) profileTypeJsonObj.get("secure"));
+                        profiles.add(profile);
+                        System.out.println(profile);
                     }
+                } else {
+                    // TODO
                 }
             }
             if (SectionType.DEFAULTS.getValue().equals(key)) {
@@ -101,11 +103,11 @@ public class TeamConfigTest {
 
     private static boolean isPartition(String type) {
         if (ProfileType.SSH.getValue().equals(type) ||
-            ProfileType.BASE.getValue().equals(type) ||
-            ProfileType.SYSVIEW.getValue().equals(type) ||
-            ProfileType.SYSVIEWFORMAT.getValue().equals(type) ||
-            ProfileType.TSO.getValue().equals(type) ||
-            ProfileType.ZOSMF.getValue().equals(type)) {
+                ProfileType.BASE.getValue().equals(type) ||
+                ProfileType.SYSVIEW.getValue().equals(type) ||
+                ProfileType.SYSVIEWFORMAT.getValue().equals(type) ||
+                ProfileType.TSO.getValue().equals(type) ||
+                ProfileType.ZOSMF.getValue().equals(type)) {
             return false;
         }
         return true;
