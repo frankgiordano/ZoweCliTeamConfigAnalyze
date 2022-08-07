@@ -77,15 +77,6 @@ public class TeamConfigTest {
             if (SectionType.AUTOSTORE.getValue().equals(key)) {
                 System.out.println("INSIDE " + SectionType.AUTOSTORE);
             }
-            Object valObj = jsonObj.get(key);
-            if (valObj instanceof JSONObject) {
-                // call parseJson on nested object
-                parseJson((JSONObject) valObj);
-            } else {
-                // print key-value pair
-                System.out.println("key : " + key);
-                System.out.println("value : " + valObj.toString());
-            }
         }
         return new ZoweTeamConfig(partitions, schema, profiles, defaults, autoStore);
     }
