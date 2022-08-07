@@ -2,13 +2,15 @@ package zowecli.globalteamconfig.sections;
 
 import zowecli.globalteamconfig.types.ProfileType;
 
+import java.util.Map;
+
 public class Profile {
 
     private ProfileType type;
-    private ProfileProperties profileProperties;
+    private Map<String, String> profileProperties;
     private String secure;
 
-    public Profile(ProfileType type, ProfileProperties profileProperties, String secure) {
+    public Profile(ProfileType type, Map<String, String> profileProperties, String secure) {
         this.type = type;
         this.profileProperties = profileProperties;
         this.secure = secure;
@@ -18,7 +20,7 @@ public class Profile {
         return type;
     }
 
-    public ProfileProperties getProfileProperties() {
+    public Map<String, String> getProfileProperties() {
         return profileProperties;
     }
 
