@@ -94,15 +94,12 @@ public class TeamConfigTest {
     }
 
     private static boolean isPartition(String type) {
-        if (ProfileType.SSH.getValue().equals(type) ||
-                ProfileType.BASE.getValue().equals(type) ||
-                ProfileType.SYSVIEW.getValue().equals(type) ||
-                ProfileType.SYSVIEWFORMAT.getValue().equals(type) ||
-                ProfileType.TSO.getValue().equals(type) ||
-                ProfileType.ZOSMF.getValue().equals(type)) {
-            return false;
-        }
-        return true;
+        return !ProfileType.SSH.getValue().equals(type) &&
+                !ProfileType.BASE.getValue().equals(type) &&
+                !ProfileType.SYSVIEW.getValue().equals(type) &&
+                !ProfileType.SYSVIEWFORMAT.getValue().equals(type) &&
+                !ProfileType.TSO.getValue().equals(type) &&
+                !ProfileType.ZOSMF.getValue().equals(type);
     }
 
     public static String getTeamConfigJsonString() {
