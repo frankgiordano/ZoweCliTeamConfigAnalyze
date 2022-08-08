@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface IKeyContainer {
 
-    public void processKey() throws KeytarException;
+    void processKey() throws KeytarException;
 
-    public List<KeyTarConfig> getKeyConfigs() throws Exception;
+    List<KeyTarConfig> getKeyConfigs() throws Exception;
 
-    public String getKeyValue() throws Exception;
+    String getKeyValue() throws Exception;
 
 }
