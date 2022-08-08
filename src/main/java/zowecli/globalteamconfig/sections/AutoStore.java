@@ -2,7 +2,7 @@ package zowecli.globalteamconfig.sections;
 
 public class AutoStore {
 
-    private String autoStore;
+    private final String autoStore;
 
     public AutoStore(String autoStore) {
         this.autoStore = autoStore;

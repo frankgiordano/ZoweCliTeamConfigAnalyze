@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class Partition {
 
-    private String name;
-    private Map<String, String> profileProperties;
-    private List<Profile> profiles;
+    private final String name;
+    private final Map<String, String> profileProperties;
+    private final List<Profile> profiles;
 
     public Partition(String name, Map<String, String> profileProperties, List<Profile> profiles) {
         this.name = name;

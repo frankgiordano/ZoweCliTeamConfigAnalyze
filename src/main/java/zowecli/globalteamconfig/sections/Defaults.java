@@ -2,12 +2,12 @@ package zowecli.globalteamconfig.sections;
 
 public class Defaults {
 
-    private String zosmf;
-    private String tso;
-    private String ssh;
-    private String sysview;
-    private String sysviewFormat;
-    private String base;
+    private final String zosmf;
+    private final String tso;
+    private final String ssh;
+    private final String sysview;
+    private final String sysviewFormat;
+    private final String base;
 
     public Defaults(String zosmf, String tso, String ssh, String sysview, String sysviewFormat, String base) {
         this.zosmf = zosmf;

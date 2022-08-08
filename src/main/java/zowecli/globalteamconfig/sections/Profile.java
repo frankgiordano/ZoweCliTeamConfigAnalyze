@@ -5,9 +5,9 @@ import org.json.simple.JSONObject;
 
 public class Profile {
 
-    private String name;
-    private JSONObject properties;
-    private JSONArray secure;
+    private final String name;
+    private final JSONObject properties;
+    private final JSONArray secure;
     private String propertiesJsonValue;
 
     public Profile(String name, JSONObject properties, JSONArray secure) {

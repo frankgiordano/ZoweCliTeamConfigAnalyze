@@ -2,7 +2,7 @@ package zowecli.globalteamconfig.sections;
 
 public class Schema {
 
-    private String schema;
+    private final String schema;
 
     public Schema(String schema) {
         this.schema = schema;

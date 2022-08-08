@@ -10,10 +10,10 @@ import java.util.*;
 
 public class KeyTarContainer implements IKeyContainer {
 
-    private String serviceName;
-    private String accountName;
+    private final String serviceName;
+    private final String accountName;
     private String keyString;
-    private List<KeyTarConfig> keyTarConfigs = new ArrayList<>();
+    private final List<KeyTarConfig> keyTarConfigs = new ArrayList<>();
 
     public KeyTarContainer(String serviceName, String accountName) {
         this.serviceName = serviceName;

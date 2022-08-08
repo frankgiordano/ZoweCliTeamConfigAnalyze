@@ -2,9 +2,9 @@ package zowecli.keytar;
 
 public class KeyTarConfig {
 
-    private String location;
-    private String userName;
-    private String password;
+    private final String location;
+    private final String userName;
+    private final String password;
 
     public KeyTarConfig(String location, String userName, String password) {
         this.location = location;

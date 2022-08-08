@@ -6,11 +6,11 @@ import java.util.List;
 
 public class ZoweTeamConfig {
 
-    private List<Partition> partitions;
-    private Schema schema;
-    private List<Profile> profiles;
-    private Defaults defaults;
-    private AutoStore autoStore;
+    private final List<Partition> partitions;
+    private final Schema schema;
+    private final List<Profile> profiles;
+    private final Defaults defaults;
+    private final AutoStore autoStore;
 
     public ZoweTeamConfig(List<Partition> partitions, Schema schema, List<Profile> profiles,
                           Defaults defaults, AutoStore autoStore) {
