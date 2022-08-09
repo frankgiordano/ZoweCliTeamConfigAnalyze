@@ -57,9 +57,7 @@ public class TeamConfigTest {
                 Set<String> profileKeyObj = profileJsonObj.keySet();
                 boolean isPartition = isPartition(profileKeyObj);
                 if (!isPartition) {
-                    Iterator<String> itr = profileKeyObj.iterator();
-                    while (itr.hasNext()) {
-                        String keyVal = itr.next();
+                    for (String keyVal : profileKeyObj) {
                         JSONObject profileTypeJsonObj = (JSONObject) profileJsonObj.get(keyVal);
                         Profile profile = new Profile((String) profileTypeJsonObj.get("type"),
                                 (JSONObject) profileTypeJsonObj.get("properties"),
