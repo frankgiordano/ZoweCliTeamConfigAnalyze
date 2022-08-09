@@ -7,7 +7,7 @@ public enum SectionType {
     DEFAULTS("defaults"),
     AUTOSTORE("autoStore");
 
-    private SectionType(String value) {
+    SectionType(String value) {
         this.value = value;
     }
 

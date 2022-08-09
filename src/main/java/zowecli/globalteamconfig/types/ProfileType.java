@@ -9,7 +9,7 @@ public enum ProfileType {
     SYSVIEWFORMAT("sysview-format"),
     BASE("base");
 
-    private ProfileType(String value) {
+    ProfileType(String value) {
         this.value = value;
     }
 
