@@ -41,24 +41,24 @@ public class TeamConfigTest {
         Defaults defaults = null;
         AutoStore autoStore = null;
         List<Partition> partitions = null;
-        for (Object keyObj : jsonObj.keySet()) {
-            String key = (String) keyObj;
-            if (SectionType.$SCHEMA.getValue().equals(key)) {
+        Set<String> jsonSectionKeys = jsonObj.keySet();
+        for (String keyVal : jsonSectionKeys) {
+            if (SectionType.$SCHEMA.getValue().equals(keyVal)) {
                 System.out.println("INSIDE " + SectionType.$SCHEMA);
                 schema = new Schema((String) jsonObj.get(SectionType.$SCHEMA.getValue()));
             }
-            if (SectionType.PROFILES.getValue().equals(key)) {
+            if (SectionType.PROFILES.getValue().equals(keyVal)) {
                 System.out.println("INSIDE " + SectionType.PROFILES);
                 // At this point, the JSON will consist of a bunch of profile type sections.
                 // The first section may not be of a profile type. Let's check the first profile
                 // section and determine if it contains a profile type value, if not then it is a
                 // partition section, and we need to parse each partition and its profiles.
-                JSONObject profileJsonObj = (JSONObject) jsonObj.get(SectionType.PROFILES.getValue());
-                Set<String> profileKeyObj = profileJsonObj.keySet();
-                boolean isPartition = isPartition(profileKeyObj);
+                JSONObject jsonProfileObj = (JSONObject) jsonObj.get(SectionType.PROFILES.getValue());
+                Set<String> jsonProfileKeys = jsonProfileObj.keySet();
+                boolean isPartition = isPartition(jsonProfileKeys);
                 if (!isPartition) {
-                    for (String keyVal : profileKeyObj) {
-                        JSONObject profileTypeJsonObj = (JSONObject) profileJsonObj.get(keyVal);
+                    for (String profileKeyVal : jsonProfileKeys) {
+                        JSONObject profileTypeJsonObj = (JSONObject) jsonProfileObj.get(profileKeyVal);
                         Profile profile = new Profile((String) profileTypeJsonObj.get("type"),
                                 (JSONObject) profileTypeJsonObj.get("properties"),
                                 (JSONArray) profileTypeJsonObj.get("secure"));
@@ -69,10 +69,10 @@ public class TeamConfigTest {
                     // TODO
                 }
             }
-            if (SectionType.DEFAULTS.getValue().equals(key)) {
+            if (SectionType.DEFAULTS.getValue().equals(keyVal)) {
                 System.out.println("INSIDE " + SectionType.DEFAULTS);
             }
-            if (SectionType.AUTOSTORE.getValue().equals(key)) {
+            if (SectionType.AUTOSTORE.getValue().equals(keyVal)) {
                 System.out.println("INSIDE " + SectionType.AUTOSTORE);
             }
         }
