@@ -46,18 +46,13 @@ public class KeyTarContainer implements IKeyContainer {
     }
 
     private List<KeyTarConfig> parseJson() throws ParseException {
-        JSONParser parser = new JSONParser();
-        Object obj = parser.parse(keyString);
-        JSONObject jsonObject = (JSONObject) obj;
-
-        Set<Object> keyObj = jsonObject.keySet();
-        Iterator<Object> itr = keyObj.iterator();
-        while (itr.hasNext()) {
-            String locationKeyValue = (String) itr.next();
-            JSONObject valObj = (JSONObject) jsonObject.get(locationKeyValue);
-            keyTarConfigs.add(new KeyTarConfig(locationKeyValue,
-                    (String) valObj.get("profiles.base.properties.user"),
-                    (String) valObj.get("profiles.base.properties.password")));
+        JSONObject jsonKeyTar = (JSONObject) new JSONParser().parse(keyString);
+        Set<String> keyTarKeys = jsonKeyTar.keySet();
+        for (String keyVal : keyTarKeys) {
+            JSONObject jsonVal = (JSONObject) jsonKeyTar.get(keyVal);
+            keyTarConfigs.add(new KeyTarConfig(keyVal,
+                    (String) jsonVal.get("profiles.base.properties.user"),
+                    (String) jsonVal.get("profiles.base.properties.password")));
         }
 
         return keyTarConfigs;
