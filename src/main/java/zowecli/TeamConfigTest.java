@@ -39,7 +39,7 @@ public class TeamConfigTest {
         List<Profile> profiles = new ArrayList<>();
         Defaults defaults = null;
         AutoStore autoStore = null;
-        List<Partition> partitions = null;
+        List<Partition> partitions = new ArrayList<>();
         Set<String> jsonSectionKeys = jsonObj.keySet();
         for (String keyVal : jsonSectionKeys) {
             if (SectionType.$SCHEMA.getValue().equals(keyVal)) {
