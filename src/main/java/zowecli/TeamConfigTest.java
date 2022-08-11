@@ -71,9 +71,11 @@ public class TeamConfigTest {
             }
             if (SectionType.DEFAULTS.getValue().equals(keyVal)) {
                 System.out.println("INSIDE " + SectionType.DEFAULTS);
+                // TODO
             }
             if (SectionType.AUTOSTORE.getValue().equals(keyVal)) {
                 System.out.println("INSIDE " + SectionType.AUTOSTORE);
+                // TODO
             }
         }
         return new ZoweTeamConfig(partitions, schema, profiles, defaults, autoStore);
