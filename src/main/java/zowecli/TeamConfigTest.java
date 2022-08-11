@@ -17,7 +17,6 @@ import java.util.*;
 public class TeamConfigTest {
 
     public static void main(String[] args) throws Exception {
-
         List<KeyTarConfig> configList = KeyTarTest.processJson(KeyTarTest.getSingleJsonString());
         KeyTarConfig config = configList.get(0);
 
