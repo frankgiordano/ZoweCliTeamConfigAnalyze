@@ -3,24 +3,34 @@ package zowecli.globalteamconfig.sections;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.Map;
+
 public class Profile {
 
     private final String name;
-    private final JSONObject properties;
+    private final JSONObject jsonPropsObj;
     private final JSONArray secure;
-    private String propertiesJsonValue;
+    private Map<String, String> properties;
 
-    public Profile(String name, JSONObject properties, JSONArray secure) {
+    public Profile(String name, JSONObject jsonPropsObj, JSONArray secure) {
         this.name = name;
-        this.properties = properties;
+        this.jsonPropsObj = jsonPropsObj;
         this.secure = secure;
+        this.parseJsonPropsObj(this.jsonPropsObj);
+    }
+
+    private void parseJsonPropsObj(JSONObject jsonPropsObj) {
+        // example of props json value to parse
+        // properties='{"rejectUnauthorized":false,"host":"mvsxe47.lvn.company.net"}'
+        // parse and populate Map properties variable with key value pairs from json
+        // TODO
     }
 
     public String getName() {
         return name;
     }
 
-    public JSONObject getProperties() {
+    public Map<String, String> getProperties() {
         return properties;
     }
 
@@ -28,17 +38,13 @@ public class Profile {
         return secure;
     }
 
-    public String getPropertiesJsonValue() {
-        return propertiesJsonValue;
-    }
-
     @Override
     public String toString() {
         return "Profile{" +
                 "name='" + name + '\'' +
-                ", properties='" + properties + '\'' +
-                ", secure='" + secure + '\'' +
-                ", propertiesJsonValue='" + propertiesJsonValue + '\'' +
+                ", jsonPropsObj=" + jsonPropsObj +
+                ", secure=" + secure +
+                ", properties=" + properties +
                 '}';
     }
 
