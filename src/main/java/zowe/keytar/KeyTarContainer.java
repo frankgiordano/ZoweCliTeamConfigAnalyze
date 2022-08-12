@@ -6,7 +6,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+import java.util.Set;
 
 public class KeyTarContainer implements IKeyContainer {
 
@@ -18,6 +21,12 @@ public class KeyTarContainer implements IKeyContainer {
     public KeyTarContainer(String serviceName, String accountName) {
         this.serviceName = serviceName;
         this.accountName = accountName;
+    }
+
+    public KeyTarContainer(String serviceName, String accountName, String keyString) {
+        this.serviceName = serviceName;
+        this.accountName = accountName;
+        this.keyString = keyString;
     }
 
     @Override

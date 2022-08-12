@@ -1,6 +1,6 @@
-package zowe.globalteamconfig.config;
+package zowe.teamconfig.config;
 
-import zowe.globalteamconfig.sections.*;
+import zowe.teamconfig.sections.*;
 
 import java.util.List;
 

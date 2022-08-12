@@ -1,6 +1,6 @@
 package zowe.model;
 
-import zowe.globalteamconfig.sections.Profile;
+import zowe.teamconfig.sections.Profile;
 
 public class ProfileDao {
 
