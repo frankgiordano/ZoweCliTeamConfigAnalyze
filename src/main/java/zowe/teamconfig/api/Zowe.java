@@ -21,12 +21,12 @@ public class Zowe {
     }
 
     public ProfileDao getDefaultProfileByName(String name) throws Exception {
-        KeyTarConfig keyTarConfig = keyTarService.getKeyTar();
+        var keyTarConfig = keyTarService.getKeyTar();
         System.out.println(keyTarConfig);
-        TeamConfig teamConfig = teamConfigService.getTeamConfig(keyTarConfig);
+        var teamConfig = teamConfigService.getTeamConfig(keyTarConfig);
         System.out.println(teamConfig);
-        Optional<Profile> target = teamConfig.getProfiles().stream().filter(i -> name.equals(i.getName())).findFirst();
-        Optional<Profile> base = teamConfig.getProfiles().stream().filter(i -> "base".equals(i.getName())).findFirst();
+        var target = teamConfig.getProfiles().stream().filter(i -> name.equals(i.getName())).findFirst();
+        var base = teamConfig.getProfiles().stream().filter(i -> "base".equals(i.getName())).findFirst();
         if (target.isEmpty()) {
             throw new Exception("No Zowe team config profile found");
         }
@@ -77,6 +77,5 @@ public class Zowe {
         // TODO
         return null;
     }
-
 
 }
