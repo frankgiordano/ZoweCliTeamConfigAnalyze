@@ -2,9 +2,13 @@ package zowe.teamconfig.api;
 
 import zowe.service.KeyTarService;
 import zowe.service.TeamConfigService;
+import zowe.teamconfig.config.TeamConfig;
+import zowe.teamconfig.sections.Profile;
 import zowe.teamconfig.types.ProfileType;
 import zowe.keytar.KeyTarConfig;
 import zowe.model.ProfileDao;
+
+import java.util.Optional;
 
 public class Zowe {
 
@@ -19,7 +23,15 @@ public class Zowe {
     public ProfileDao getDefaultProfileByName(String name) throws Exception {
         KeyTarConfig keyTarConfig = keyTarService.getKeyTar();
         System.out.println(keyTarConfig);
-        return null;
+        TeamConfig teamConfig = teamConfigService.getTeamConfig(keyTarConfig);
+        Optional<Profile> targetProfile = teamConfig.getProfiles().stream().filter(i -> name.equals(i.getName())).findFirst();
+        Optional<Profile> baseProfile = teamConfig.getProfiles().stream().filter(i -> "base".equals(i.getName())).findFirst();
+        String host = null;
+        String port = null;
+        // check profile properties for host name port values, if they don't exist there, then check base profile properties
+        ProfileDao profileDao = new ProfileDao(targetProfile.orElseThrow(() -> new RuntimeException("No profile found")),
+                keyTarConfig.getUserName(), keyTarConfig.getPassword(), host, port);
+        return profileDao;
     }
 
     public ProfileDao getDefaultProfileBType(ProfileType type) {
