@@ -1,4 +1,4 @@
-package zowecli.globalteamconfig.sections;
+package zowe.globalteamconfig.sections;
 
 import java.util.List;
 import java.util.Map;

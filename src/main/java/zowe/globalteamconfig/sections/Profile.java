@@ -1,4 +1,4 @@
-package zowecli.globalteamconfig.sections;
+package zowe.globalteamconfig.sections;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

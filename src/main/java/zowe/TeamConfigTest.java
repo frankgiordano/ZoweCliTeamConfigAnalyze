@@ -1,14 +1,14 @@
-package zowecli;
+package zowe;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import zowecli.globalteamconfig.config.ZoweTeamConfig;
-import zowecli.globalteamconfig.sections.*;
-import zowecli.globalteamconfig.types.ProfileType;
-import zowecli.keytar.KeyTarConfig;
-import zowecli.globalteamconfig.types.SectionType;
+import zowe.globalteamconfig.config.ZoweTeamConfig;
+import zowe.globalteamconfig.sections.*;
+import zowe.globalteamconfig.types.ProfileType;
+import zowe.keytar.KeyTarConfig;
+import zowe.globalteamconfig.types.SectionType;
 
 import java.io.FileReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package zowecli.keytar;
+package zowe.keytar;
 
 import java.util.List;
 

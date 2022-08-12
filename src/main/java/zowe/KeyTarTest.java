@@ -1,11 +1,11 @@
-package zowecli;
+package zowe;
 
 import com.starxg.keytar.Keytar;
 import com.starxg.keytar.KeytarException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import zowecli.keytar.KeyTarConfig;
+import zowe.keytar.KeyTarConfig;
 
 import java.util.*;
 

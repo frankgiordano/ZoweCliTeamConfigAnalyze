@@ -1,4 +1,4 @@
-package zowecli.globalteamconfig.types;
+package zowe.globalteamconfig.types;
 
 public enum SectionType {
 

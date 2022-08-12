@@ -1,4 +1,4 @@
-package zowecli.keytar;
+package zowe.keytar;
 
 import com.starxg.keytar.Keytar;
 import com.starxg.keytar.KeytarException;

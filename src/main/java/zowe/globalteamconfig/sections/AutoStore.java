@@ -1,4 +1,4 @@
-package zowecli.globalteamconfig.sections;
+package zowe.globalteamconfig.sections;
 
 public class AutoStore {
 
