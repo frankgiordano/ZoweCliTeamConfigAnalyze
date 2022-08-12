@@ -4,7 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import zowe.globalteamconfig.config.ZoweTeamConfig;
+import zowe.globalteamconfig.config.TeamConfig;
 import zowe.globalteamconfig.sections.*;
 import zowe.globalteamconfig.types.ProfileType;
 import zowe.keytar.KeyTarConfig;
@@ -28,13 +28,13 @@ public class TeamConfigTest {
             obj = parser.parse(getTeamConfigJsonString());
         }
         JSONObject jsonObject = (JSONObject) obj;
-        ZoweTeamConfig result = parseJson(jsonObject);
+        TeamConfig result = parseJson(jsonObject);
         System.out.println();
         System.out.println(jsonObject);
         System.out.println(result);
     }
 
-    public static ZoweTeamConfig parseJson(JSONObject jsonObj) throws Exception {
+    public static TeamConfig parseJson(JSONObject jsonObj) throws Exception {
         Schema schema = null;
         List<Profile> profiles = new ArrayList<>();
         Defaults defaults = null;
@@ -77,7 +77,7 @@ public class TeamConfigTest {
                 // TODO
             }
         }
-        return new ZoweTeamConfig(partitions, schema, profiles, defaults, autoStore);
+        return new TeamConfig(partitions, schema, profiles, defaults, autoStore);
     }
 
     private static boolean isPartition(Set<String> profileKeyObj) throws Exception {
