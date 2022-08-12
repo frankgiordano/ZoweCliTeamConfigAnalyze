@@ -36,21 +36,14 @@ public class KeyTarTest {
     }
 
     public static List<KeyTarConfig> processJson(String jsonStr) throws ParseException {
-        JSONParser parser = new JSONParser();
-        Object obj = parser.parse(jsonStr);
-        JSONObject jsonObject = (JSONObject) obj;
-
+        JSONObject jsonObject = (JSONObject) new JSONParser().parse(jsonStr);
         List<KeyTarConfig> configList = new ArrayList<>();
-        Set<Object> keyObj = jsonObject.keySet();
-        Iterator<Object> itr = keyObj.iterator();
-        while (itr.hasNext()) {
-            String locationKeyValue = (String) itr.next();
-            JSONObject valObj = (JSONObject) jsonObject.get(locationKeyValue);
-            configList.add(new KeyTarConfig(locationKeyValue,
-                    (String) valObj.get("profiles.base.properties.user"),
+        Set<String> keyObj = jsonObject.keySet();
+        for (String keyVal : keyObj) {
+            JSONObject valObj = (JSONObject) jsonObject.get(keyVal);
+            configList.add(new KeyTarConfig(keyVal, (String) valObj.get("profiles.base.properties.user"),
                     (String) valObj.get("profiles.base.properties.password")));
         }
-
         return configList;
     }
 
