@@ -25,13 +25,13 @@ public class Zowe {
         System.out.println(keyTarConfig);
         TeamConfig teamConfig = teamConfigService.getTeamConfig(keyTarConfig);
         System.out.println(teamConfig);
-        Optional<Profile> targetProfile = teamConfig.getProfiles().stream().filter(i -> name.equals(i.getName())).findFirst();
-        Optional<Profile> baseProfile = teamConfig.getProfiles().stream().filter(i -> "base".equals(i.getName())).findFirst();
+        Optional<Profile> targetP = teamConfig.getProfiles().stream().filter(i -> name.equals(i.getName())).findFirst();
+        Optional<Profile> baseP = teamConfig.getProfiles().stream().filter(i -> "base".equals(i.getName())).findFirst();
         String host = null;
         String port = null;
         // check profile properties hashmap variable for host, name, and port values
         // if they don't exist there, then check the base profile properties variable
-        ProfileDao profileDao = new ProfileDao(targetProfile.orElseThrow(() -> new RuntimeException("No profile found")),
+        ProfileDao profileDao = new ProfileDao(targetP.orElseThrow(() -> new RuntimeException("No profile found")),
                 keyTarConfig.getUserName(), keyTarConfig.getPassword(), host, port);
         return profileDao;
     }
