@@ -34,6 +34,7 @@ public class Zowe {
         // check profile properties hashmap variable for host and port values
         // if they don't exist there, then check the base profile properties variable
         var targetProps = Optional.ofNullable(target.get().getProperties());
+        var baseProps = Optional.ofNullable(base.get().getProperties());
         Optional<String> host = Optional.empty();
         Optional<String> port = Optional.empty();
         if (targetProps.isPresent()) {
@@ -44,7 +45,6 @@ public class Zowe {
             if (base.isEmpty()) {
                 throw new Exception("No Zowe team config base profile and host property found");
             }
-            var baseProps = Optional.ofNullable(base.get().getProperties());
             if (baseProps.isPresent()) {
                 host = Optional.ofNullable(baseProps.get().get("host"));
             }
@@ -53,7 +53,6 @@ public class Zowe {
             if (base.isEmpty()) {
                 throw new Exception("No Zowe team config base profile and port property found");
             }
-            var baseProps = Optional.ofNullable(base.get().getProperties());
             if (baseProps.isPresent()) {
                 port = Optional.ofNullable(baseProps.get().get("port"));
             }
