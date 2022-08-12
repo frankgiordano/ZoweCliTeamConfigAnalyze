@@ -33,6 +33,7 @@ public class KeyTarContainer implements IKeyContainer {
     public void processKey() throws KeytarException {
         Keytar instance = Keytar.getInstance();
         String encodedString = instance.getPassword(serviceName, accountName);
+        System.out.println(encodedString);
         if (encodedString == null) {
             throw new NullPointerException("Unknown service name or account name");
         }

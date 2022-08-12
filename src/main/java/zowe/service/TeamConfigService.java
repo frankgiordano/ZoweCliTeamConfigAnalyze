@@ -29,6 +29,7 @@ public class TeamConfigService {
             obj = parser.parse(TeamConfigMockData.getTeamConfigJsonString());
         }
         JSONObject jsonObject = (JSONObject) obj;
+        System.out.println(jsonObject);
         return parseJson(jsonObject);
     }
 

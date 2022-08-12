@@ -24,6 +24,7 @@ public class KeyTarService {
             } catch (Exception e) {
                 continue;
             }
+            System.out.println(keyTarContainer.getKeyValue());
             keyTarConfigs = keyTarContainer.getKeyConfigs();
             break;
         }
