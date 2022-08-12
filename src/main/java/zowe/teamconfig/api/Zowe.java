@@ -25,15 +25,43 @@ public class Zowe {
         System.out.println(keyTarConfig);
         TeamConfig teamConfig = teamConfigService.getTeamConfig(keyTarConfig);
         System.out.println(teamConfig);
-        Optional<Profile> targetP = teamConfig.getProfiles().stream().filter(i -> name.equals(i.getName())).findFirst();
-        Optional<Profile> baseP = teamConfig.getProfiles().stream().filter(i -> "base".equals(i.getName())).findFirst();
-        String host = null;
-        String port = null;
-        // check profile properties hashmap variable for host, name, and port values
+        Optional<Profile> target = teamConfig.getProfiles().stream().filter(i -> name.equals(i.getName())).findFirst();
+        Optional<Profile> base = teamConfig.getProfiles().stream().filter(i -> "base".equals(i.getName())).findFirst();
+        if (target.isEmpty()) {
+            throw new Exception("No Zowe team config profile found");
+        }
+
+        // check profile properties hashmap variable for host and port values
         // if they don't exist there, then check the base profile properties variable
-        ProfileDao profileDao = new ProfileDao(targetP.orElseThrow(() -> new RuntimeException("No profile found")),
-                keyTarConfig.getUserName(), keyTarConfig.getPassword(), host, port);
-        return profileDao;
+        var targetProps = Optional.ofNullable(target.get().getProperties());
+        Optional<String> host = Optional.empty();
+        Optional<String> port = Optional.empty();
+        if (targetProps.isPresent()) {
+            host = Optional.ofNullable(targetProps.get().get("host"));
+            port = Optional.ofNullable(targetProps.get().get("port"));
+        }
+        if (host.isEmpty()) {
+            if (base.isEmpty()) {
+                throw new Exception("No Zowe team config base profile and host property found");
+            }
+            var baseProps = Optional.ofNullable(base.get().getProperties());
+            if (baseProps.isPresent()) {
+                host = Optional.ofNullable(baseProps.get().get("host"));
+            }
+        }
+        if (port.isEmpty()) {
+            if (base.isEmpty()) {
+                throw new Exception("No Zowe team config base profile and port property found");
+            }
+            var baseProps = Optional.ofNullable(base.get().getProperties());
+            if (baseProps.isPresent()) {
+                port = Optional.ofNullable(baseProps.get().get("port"));
+            }
+        }
+
+        return new ProfileDao(target.get(), keyTarConfig.getUserName(), keyTarConfig.getPassword(),
+                host.orElseThrow(() -> new RuntimeException("No host found for profile")),
+                port.orElseThrow(() -> new RuntimeException("No port found for profile")));
     }
 
     public ProfileDao getDefaultProfileBType(ProfileType type) {
