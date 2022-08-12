@@ -27,6 +27,8 @@ public class Zowe {
         System.out.println(teamConfig);
         var target = teamConfig.getProfiles().stream().filter(i -> name.equals(i.getName())).findFirst();
         var base = teamConfig.getProfiles().stream().filter(i -> "base".equals(i.getName())).findFirst();
+        // check team Config defaults for default name value
+        // TODO
         if (target.isEmpty()) {
             throw new Exception("No Zowe team config profile found");
         }
