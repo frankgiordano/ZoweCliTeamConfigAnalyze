@@ -1,4 +1,4 @@
-package zowe.keytar;
+package zowe.teamconfig.keytar;
 
 public class KeyTarConfig {
 

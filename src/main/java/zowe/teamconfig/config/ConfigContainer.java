@@ -4,7 +4,7 @@ import zowe.teamconfig.sections.*;
 
 import java.util.List;
 
-public class TeamConfig {
+public class ConfigContainer {
 
     private final List<Partition> partitions;
     private final Schema schema;
@@ -12,8 +12,8 @@ public class TeamConfig {
     private final Defaults defaults;
     private final AutoStore autoStore;
 
-    public TeamConfig(List<Partition> partitions, Schema schema, List<Profile> profiles,
-                      Defaults defaults, AutoStore autoStore) {
+    public ConfigContainer(List<Partition> partitions, Schema schema, List<Profile> profiles,
+                           Defaults defaults, AutoStore autoStore) {
         this.partitions = partitions;
         this.schema = schema;
         this.profiles = profiles;

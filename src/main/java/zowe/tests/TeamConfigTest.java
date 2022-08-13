@@ -1,25 +1,16 @@
 package zowe.tests;
 
-import zowe.teamconfig.config.TeamConfig;
-import zowe.keytar.KeyTarConfig;
-import zowe.keytar.mockdata.KeyTarMockData;
-import zowe.service.KeyTarService;
-import zowe.service.TeamConfigService;
+import zowe.teamconfig.model.ProfileDao;
+import zowe.teamconfig.TeamConfig;
+import zowe.teamconfig.service.KeyTarService;
+import zowe.teamconfig.service.TeamConfigService;
 
 public class TeamConfigTest {
 
     public static void main(String[] args) throws Exception {
-        KeyTarConfig keyTarConfig;
-        KeyTarService keyTarService = new KeyTarService();
-        try {
-            keyTarConfig = keyTarService.getKeyTar();
-        } catch (Exception e) {
-            keyTarConfig = keyTarService.getKeyTar(KeyTarMockData.getSingleJsonString());
-        }
-        System.out.println(keyTarConfig.toString());
-        TeamConfigService teamConfigService = new TeamConfigService();
-        TeamConfig teamConfig = teamConfigService.getTeamConfig(keyTarConfig);
-        System.out.println(teamConfig.toString());
+        TeamConfig zowe = new TeamConfig(new KeyTarService(), new TeamConfigService());
+        ProfileDao profileDao = zowe.getDefaultProfileByName("zosmf");
+        System.out.println(profileDao);
     }
 
 }

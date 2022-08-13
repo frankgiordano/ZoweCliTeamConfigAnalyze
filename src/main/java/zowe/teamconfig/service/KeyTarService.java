@@ -1,7 +1,7 @@
-package zowe.service;
+package zowe.teamconfig.service;
 
-import zowe.keytar.KeyTarConfig;
-import zowe.keytar.KeyTarContainer;
+import zowe.teamconfig.keytar.KeyTarConfig;
+import zowe.teamconfig.keytar.KeyTarContainer;
 
 import java.util.ArrayList;
 import java.util.List;

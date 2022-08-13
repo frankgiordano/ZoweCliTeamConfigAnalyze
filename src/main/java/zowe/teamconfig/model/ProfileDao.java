@@ -1,4 +1,4 @@
-package zowe.model;
+package zowe.teamconfig.model;
 
 import zowe.teamconfig.sections.Profile;
 

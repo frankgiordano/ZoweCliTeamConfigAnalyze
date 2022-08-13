@@ -1,21 +1,18 @@
-package zowe.teamconfig.api;
+package zowe.teamconfig;
 
-import zowe.service.KeyTarService;
-import zowe.service.TeamConfigService;
-import zowe.teamconfig.config.TeamConfig;
-import zowe.teamconfig.sections.Profile;
+import zowe.teamconfig.service.KeyTarService;
+import zowe.teamconfig.service.TeamConfigService;
 import zowe.teamconfig.types.ProfileType;
-import zowe.keytar.KeyTarConfig;
-import zowe.model.ProfileDao;
+import zowe.teamconfig.model.ProfileDao;
 
 import java.util.Optional;
 
-public class Zowe {
+public class TeamConfig {
 
     private TeamConfigService teamConfigService;
     private KeyTarService keyTarService;
 
-    public Zowe(KeyTarService keyTarService, TeamConfigService teamConfigService) {
+    public TeamConfig(KeyTarService keyTarService, TeamConfigService teamConfigService) {
         this.keyTarService = keyTarService;
         this.teamConfigService = teamConfigService;
     }

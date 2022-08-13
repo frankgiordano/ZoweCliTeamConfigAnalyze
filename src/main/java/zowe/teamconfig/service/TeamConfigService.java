@@ -1,15 +1,15 @@
-package zowe.service;
+package zowe.teamconfig.service;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import zowe.teamconfig.config.TeamConfig;
+import zowe.teamconfig.config.ConfigContainer;
 import zowe.teamconfig.mockdata.TeamConfigMockData;
 import zowe.teamconfig.sections.*;
 import zowe.teamconfig.types.ProfileType;
 import zowe.teamconfig.types.SectionType;
-import zowe.keytar.KeyTarConfig;
+import zowe.teamconfig.keytar.KeyTarConfig;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,7 +20,7 @@ import java.util.Set;
 
 public class TeamConfigService {
 
-    public TeamConfig getTeamConfig(KeyTarConfig config) throws Exception {
+    public ConfigContainer getTeamConfig(KeyTarConfig config) throws Exception {
         JSONParser parser = new JSONParser();
         Object obj;
         try {
@@ -33,7 +33,7 @@ public class TeamConfigService {
         return parseJson(jsonObject);
     }
 
-    private TeamConfig parseJson(JSONObject jsonObj) throws Exception {
+    private ConfigContainer parseJson(JSONObject jsonObj) throws Exception {
         Schema schema = null;
         List<Profile> profiles = new ArrayList<>();
         Defaults defaults = null;
@@ -71,7 +71,7 @@ public class TeamConfigService {
                 // TODO
             }
         }
-        return new TeamConfig(partitions, schema, profiles, defaults, autoStore);
+        return new ConfigContainer(partitions, schema, profiles, defaults, autoStore);
     }
 
     private boolean isPartition(Set<String> profileKeyObj) throws Exception {
