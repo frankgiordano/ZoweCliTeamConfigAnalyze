@@ -4,11 +4,11 @@ import zowe.teamconfig.sections.Profile;
 
 public class ProfileDao {
 
-    private Profile profile;
-    private String user;
-    private String password;
-    private String host;
-    private String port;
+    private final Profile profile;
+    private final String user;
+    private final String password;
+    private final String host;
+    private final String port;
 
     public ProfileDao(Profile profile, String user, String password, String host, String port) {
         this.profile = profile;

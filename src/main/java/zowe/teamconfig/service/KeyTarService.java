@@ -8,7 +8,7 @@ import java.util.List;
 
 public class KeyTarService {
 
-    private List<String> serviceNames = List.of("Zowe", "Zowe-Plugin");
+    private final List<String> serviceNames = List.of("Zowe", "Zowe-Plugin");
 
     public KeyTarConfig getKeyTar(String keyString) throws Exception {
         KeyTarContainer keyTarContainer = new KeyTarContainer("", "secure_config_props", keyString);

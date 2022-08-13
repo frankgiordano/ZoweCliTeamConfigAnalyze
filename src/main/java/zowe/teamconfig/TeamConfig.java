@@ -9,8 +9,8 @@ import java.util.Optional;
 
 public class TeamConfig {
 
-    private TeamConfigService teamConfigService;
-    private KeyTarService keyTarService;
+    private final TeamConfigService teamConfigService;
+    private final KeyTarService keyTarService;
 
     public TeamConfig(KeyTarService keyTarService, TeamConfigService teamConfigService) {
         this.keyTarService = keyTarService;
@@ -27,7 +27,10 @@ public class TeamConfig {
         // check team config defaults object for default name value
         // TODO
         if (target.isEmpty()) {
-            throw new Exception("No Zowe team config profile found");
+            throw new Exception("No Zowe team config " + name + " profile found");
+        }
+        if (base.isEmpty()) {
+            throw new Exception("No Zowe team config base profile found");
         }
 
         // check profile properties hashmap variable for host and port values
@@ -40,21 +43,11 @@ public class TeamConfig {
             host = Optional.ofNullable(targetProps.get().get("host"));
             port = Optional.ofNullable(targetProps.get().get("port"));
         }
-        if (host.isEmpty()) {
-            if (base.isEmpty()) {
-                throw new Exception("No Zowe team config base profile and host property found");
-            }
-            if (baseProps.isPresent()) {
-                host = Optional.ofNullable(baseProps.get().get("host"));
-            }
+        if (host.isEmpty() && baseProps.isPresent()) {
+            host = Optional.ofNullable(baseProps.get().get("host"));
         }
-        if (port.isEmpty()) {
-            if (base.isEmpty()) {
-                throw new Exception("No Zowe team config base profile and port property found");
-            }
-            if (baseProps.isPresent()) {
-                port = Optional.ofNullable(baseProps.get().get("port"));
-            }
+        if (port.isEmpty() && baseProps.isPresent()) {
+            port = Optional.ofNullable(baseProps.get().get("port"));
         }
 
         return new ProfileDao(target.get(), keyTarConfig.getUserName(), keyTarConfig.getPassword(),
