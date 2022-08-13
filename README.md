@@ -1,38 +1,35 @@
-# Zowe CLI Global Team Config Analyze Tool Written In Java
+# Zowe Global Team Config Analyze Tool Written In Java
   
-This project provides small programs to inspect the way the [Zowe CLI](https://github.com/zowe/zowe-cli]) Global Team Configuration is used for gathering Zowe CLI configuration and authentication information.  
+This project parses the [Zowe CLI](https://github.com/zowe/zowe-cli]) Global Team Configuration and retrieves authentication information.  
 
 The source code demonstrates a way to read from the OS credential store where Zowe CLI stores its username, password, and team config file path information. The code shows how this can be read and decrypted.  
   
-Moreover, the code demonstrates JSON parsing of the prudent objects from the credential store and team configuration file.  
+Mainly the code demonstrates JSON parsing of the prudent objects from the credential store and team configuration file and provides APIs to retrieve profile and authentication information from the configuration.  
 
-The intention of this project is to provide a test bed for developing and implementing Global Team Configuration processing of its profiles and authentication within the [Zowe Java SDK](https://github.com/zowe/zowe-client-java-sdk) project.
+The intention of this project is to provide a test bed for developing and implementing Zowe Global Team Configuration processing of its profiles and authentication within the [Zowe Java SDK](https://github.com/zowe/zowe-client-java-sdk) project.
   
-## KeyTarTest class
+## ConfigTest class
 
-Executing KeyTarTest.main() method, the following example output will be produced below. The first string is the encrypted string stored in the OS credential store in Windows OS or KeyChain in macOS. The second set of string output is the decryption of the previous string in clear readable Json text format. The third and fourth string outputs are from mock data being used to represent the returned KeyTar value. If you execute this example on a machine without Zowe CLI and Team Config in place, the output will only be based on the mock data. The KeyTarConfig values are the resultant parsing of the JSON string and storing the values in KeyTarConfig object.   
+Executing ConfigTest.main() method, the following example output will be produced below. The first string is the encrypted string stored in the OS credential store in Windows OS or KeyChain in macOS. The second set of string output is the decryption of the previous string in clear readable JSON text format. The third string represent a KeyTarConfig object after parsing JSON string. The fourth string represents Zowe Global Team Configuration JSON string read from the  zowe.config.json file, and the last string represents a ZoweTeamConfig object after JSON string passing.    
 
-eyJDOlxcVXNlcnNcXGZnODkyMTA1XFx6b3dlLmNvbmZpZy5qc29uIjp7InByb2ZpbGVzLmJhc2UucHJvcGVydGllcy51c2VyIjoiQ0NTQVVUTyIsInByb2ZpbGVzLmJhc2UucHJvcGVydGllcy5wYXNzd29yZCI6IkNDU0FVVE8ifSwiQzpcXFVzZXJzXFxmZzg5MjEwNVxcSWRlYVByb2plY3RzXFxab3dlQ0NTU1ZDU3ltcHRvbXNSZXBvcnRcXHpvd2UuY29uZmlnLmpzb24iOnsicHJvZmlsZXMuYmFzZS5wcm9wZXJ0aWVzLnVzZXIiOiJmZzg5MjEwNSIsInByb2ZpbGVzLmJhc2UucHJvcGVydGllcy5wYXNzd29yZCI6ImphdmFzZGsxIn19
-
-{"C:\\Users\\fg892105\\zowe.config.json":{"profiles.base.properties.user":"CCSAUTO","profiles.base.properties.password":"CCSAUTO"},"C:\\Users\\fg892105\\IdeaProjects\\ZoweCCSSVCSymptomsReport\\zowe.config.json":{"profiles.base.properties.user":"fg892105","profiles.base.properties.password":"javasdk1"}}
-KeyTarConfig{location='C:\Users\fg892105\zowe.config.json', userName='CCSAUTO', password='CCSAUTO'}
-KeyTarConfig{location='C:\Users\fg892105\IdeaProjects\ZoweCCSSVCSymptomsReport\zowe.config.json', userName='fg892105', password='javasdk1'}
-
-{"C:\\Users\\fg892105\\zowe.config.json":{"profiles.base.properties.user":"CCSAUTO","profiles.base.properties.password":"fakepw"},"C:\\Users\\fg892105\\IdeaProjects\\ZoweCCSSVCSymptomsReport\\zowe.config.json":{"profiles.base.properties.user":"fg892105","profiles.base.properties.password":"fakepw"}}
-KeyTarConfig{location='C:\Users\fg892105\zowe.config.json', userName='CCSAUTO', password='fakepw'}
-KeyTarConfig{location='C:\Users\fg892105\IdeaProjects\ZoweCCSSVCSymptomsReport\zowe.config.json', userName='fg892105', password='fakepw'}
-
-{"C:\\Users\\fg892105\\zowe.config.json":{"profiles.base.properties.user":"CCSAUTO","profiles.base.properties.password":"fakepw"}}
-KeyTarConfig{location='C:\Users\fg892105\zowe.config.json', userName='CCSAUTO', password='fakepw'}
+eyIvVXNlcnMvZnJhbmNlc2NvZ2lvcmRhbm8vem93ZS5jb25maWcuanNvbiI6eyJwcm9maWxlcy5iYXNlLnByb3BlcnRpZXMudXNlciI6ImZnaW9yZCIsInByb2ZpbGVzLmJhc2UucHJvcGVydGllcy5wYXNzd29yZCI6Ik5FVzRAREFZIn19  
   
-## TeamConfig class  
+{"/Users/francescogiordano/zowe.config.json":{"profiles.base.properties.user":"fgiord","profiles.base.properties.password":"NEW4@DAY"}}  
   
-Executing TeamConfigTest.main() method outputs information on parsing the zowe.config.json file. The information about the file and its location is provided by the KeyTarTest class and its processing of the KeyTar stored by the Team Config process on initial setup of Zowe CLI and its usage for username and password encryption store. The parsing of the config file is incomplete at the moment.  
+KeyTarConfig{location='/Users/francescogiordano/zowe.config.json', userName='xxxx', password='xxxx'}  
   
-## keytar package  
+{"$schema":".\/zowe.schema.json","defaults":{"tso":"tso","ssh":"ssh","zosmf":"zosmf","base":"base"},"profiles":{"tso":{"type":"tso","secure":[],"properties":{"codePage":"1047","logonProcedure":"IZUFPROC","account":""}},"ssh":{"type":"ssh","secure":[],"properties":{"port":22}},"zosmf":{"type":"zosmf","secure":[],"properties":{"port":443}},"base":{"type":"base","secure":["user","password"],"properties":{"rejectUnauthorized":true,"host":"47.19.64.77"}}},"autoStore":true}  
   
-The keytar package included in this project provides a clean and fully implemented way to process Zowe CLI Team Config KeyTar credentials store retrieval. Execute the KeyTarContainerTst.main() method for demonstration. For it to work it requires to be executed on a machine with the KeyTar store in place.  
-    
+ZoweTeamConfig{partitions=[], schema=Schema{schema='./zowe.schema.json'}, profiles=[Profile{name='tso', jsonPropsObj={"codePage":"1047","logonProcedure":"IZUFPROC","account":""}, secure=[], properties=null}, Profile{name='ssh', jsonPropsObj={"port":22}, secure=[], properties=null}, Profile{name='zosmf', jsonPropsObj={"port":443}, secure=[], properties=null}, Profile{name='base', jsonPropsObj={"rejectUnauthorized":true,"host":"47.19.64.77"}, secure=["user","password"], properties=null}], defaults=null, autoStore=null}  
+  
+## KeyTarTest class  
+  
+Executing KeyTarTest.main() method outputs information on parsing the key store.  
+
+## TeamConfigTest package  
+
+Executing TeamConfigTest.main() method outputs simile information as ConfigTest.main() but with calling an API method to return a profile object requested with all the needed information.  
+  
 ## Requirements  
   
   Java 11  
