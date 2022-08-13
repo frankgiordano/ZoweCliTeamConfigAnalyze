@@ -4,7 +4,7 @@ This project parses the [Zowe CLI](https://github.com/zowe/zowe-cli]) Global Tea
 
 The source code demonstrates a way to read from the OS credential store where Zowe CLI stores its username, password, and team config file path information. The code shows how this can be read and decrypted.  
   
-Mainly the code demonstrates JSON parsing of the prudent objects from the credential store and team configuration file and provides APIs to retrieve profile and authentication information from the configuration.  
+Overall, the code demonstrates JSON parsing of the prudent objects from the credential store and team configuration file and provides APIs to retrieve profile and authentication information from the configuration.  
 
 The intention of this project is to provide a test bed for developing and implementing Zowe Global Team Configuration processing of its profiles and authentication within the [Zowe Java SDK](https://github.com/zowe/zowe-client-java-sdk) project.
   
