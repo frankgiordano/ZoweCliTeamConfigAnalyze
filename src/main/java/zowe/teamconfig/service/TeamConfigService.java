@@ -78,11 +78,10 @@ public class TeamConfigService {
         Iterator<String> itr = profileKeyObj.iterator();
         if (itr.hasNext()) {
             String keyVal = itr.next();
-            isPartition(keyVal);
+            return isPartition(keyVal);
         } else {
             throw new Exception("Profile type detail missing in profile section.");
         }
-        return false;
     }
 
     private boolean isPartition(String type) {
