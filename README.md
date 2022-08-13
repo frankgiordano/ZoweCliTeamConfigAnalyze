@@ -14,7 +14,7 @@ Executing ConfigTest.main() method, the following example output will be produce
 
 eyIvVXNlcnMvZnJhbmNlc2NvZ2lvcmRhbm8vem93ZS5jb25maWcuanNvbiI6eyJwcm9maWxlcy5iYXNlLnByb3BlcnRpZXMudXNlciI6ImZnaW9yZCIsInByb2ZpbGVzLmJhc2UucHJvcGVydGllcy5wYXNzd29yZCI6Ik5FVzRAREFZIn19  
   
-{"/Users/francescogiordano/zowe.config.json":{"profiles.base.properties.user":"fgiord","profiles.base.properties.password":"NEW4@DAY"}}  
+{"/Users/francescogiordano/zowe.config.json":{"profiles.base.properties.user":"xxxx","profiles.base.properties.password":"xxxx"}}  
   
 KeyTarConfig{location='/Users/francescogiordano/zowe.config.json', userName='xxxx', password='xxxx'}  
   
