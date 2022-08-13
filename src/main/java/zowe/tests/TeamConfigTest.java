@@ -1,7 +1,7 @@
 package zowe.tests;
 
-import zowe.teamconfig.model.ProfileDao;
 import zowe.teamconfig.TeamConfig;
+import zowe.teamconfig.model.ProfileDao;
 import zowe.teamconfig.service.KeyTarService;
 import zowe.teamconfig.service.TeamConfigService;
 

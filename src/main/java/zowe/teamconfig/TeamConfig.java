@@ -1,9 +1,9 @@
 package zowe.teamconfig;
 
+import zowe.teamconfig.model.ProfileDao;
 import zowe.teamconfig.service.KeyTarService;
 import zowe.teamconfig.service.TeamConfigService;
 import zowe.teamconfig.types.ProfileType;
-import zowe.teamconfig.model.ProfileDao;
 
 import java.util.Optional;
 

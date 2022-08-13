@@ -5,11 +5,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import zowe.teamconfig.config.ConfigContainer;
+import zowe.teamconfig.keytar.KeyTarConfig;
 import zowe.teamconfig.mockdata.TeamConfigMockData;
 import zowe.teamconfig.sections.*;
 import zowe.teamconfig.types.ProfileType;
 import zowe.teamconfig.types.SectionType;
-import zowe.teamconfig.keytar.KeyTarConfig;
 
 import java.io.FileReader;
 import java.io.IOException;
