@@ -26,7 +26,7 @@ ZoweTeamConfig{partitions=[], schema=Schema{schema='./zowe.schema.json'}, profil
   
 Executing KeyTarTest.main() method outputs information on parsing the key store.  
 
-## TeamConfigTest package  
+## TeamConfigTest class  
 
 Executing TeamConfigTest.main() method outputs similair information as ConfigTest.main() but with calling an API method to return a profile object requested with all the needed information.  
   
