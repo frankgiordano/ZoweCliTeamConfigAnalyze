@@ -1,4 +1,4 @@
-package zowe.teamconfig.mockdata;
+package zowe.mockdata;
 
 public class TeamConfigMockData {
 

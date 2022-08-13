@@ -1,8 +1,8 @@
 package zowe.tests;
 
-import zowe.teamconfig.config.ConfigContainer;
+import zowe.teamconfig.model.ConfigContainer;
 import zowe.teamconfig.keytar.KeyTarConfig;
-import zowe.teamconfig.keytar.mockdata.KeyTarMockData;
+import zowe.mockdata.KeyTarMockData;
 import zowe.teamconfig.service.KeyTarService;
 import zowe.teamconfig.service.TeamConfigService;
 

@@ -1,4 +1,4 @@
-package zowe.teamconfig.sections;
+package zowe.teamconfig.model;
 
 public class Defaults {
 

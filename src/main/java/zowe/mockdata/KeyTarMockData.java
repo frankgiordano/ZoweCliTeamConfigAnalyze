@@ -1,4 +1,4 @@
-package zowe.teamconfig.keytar.mockdata;
+package zowe.mockdata;
 
 public class KeyTarMockData {
 

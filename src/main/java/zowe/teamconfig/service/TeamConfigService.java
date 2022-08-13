@@ -4,10 +4,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import zowe.teamconfig.config.ConfigContainer;
+import zowe.teamconfig.model.ConfigContainer;
 import zowe.teamconfig.keytar.KeyTarConfig;
-import zowe.teamconfig.mockdata.TeamConfigMockData;
-import zowe.teamconfig.sections.*;
+import zowe.mockdata.TeamConfigMockData;
+import zowe.teamconfig.model.*;
 import zowe.teamconfig.types.ProfileType;
 import zowe.teamconfig.types.SectionType;
 

@@ -1,6 +1,6 @@
-package zowe.teamconfig.config;
+package zowe.teamconfig.model;
 
-import zowe.teamconfig.sections.*;
+import zowe.teamconfig.model.*;
 
 import java.util.List;
 
