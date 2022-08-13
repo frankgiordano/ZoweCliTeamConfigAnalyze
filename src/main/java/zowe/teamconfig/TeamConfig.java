@@ -24,7 +24,7 @@ public class TeamConfig {
         System.out.println(teamConfig);
         var target = teamConfig.getProfiles().stream().filter(i -> name.equals(i.getName())).findFirst();
         var base = teamConfig.getProfiles().stream().filter(i -> "base".equals(i.getName())).findFirst();
-        // check team Config defaults for default name value
+        // check team config defaults object for default name value
         // TODO
         if (target.isEmpty()) {
             throw new Exception("No Zowe team config profile found");
@@ -62,7 +62,7 @@ public class TeamConfig {
                 port.orElseThrow(() -> new RuntimeException("No port found for profile")));
     }
 
-    public ProfileDao getDefaultProfileBType(ProfileType type) {
+    public ProfileDao getDefaultProfileByType(ProfileType type) {
         // TODO
         return null;
     }
@@ -72,7 +72,7 @@ public class TeamConfig {
         return null;
     }
 
-    public ProfileDao getDefaultPartitionProfileBType(String partitionName, ProfileType type) {
+    public ProfileDao getDefaultPartitionProfileByType(String partitionName, ProfileType type) {
         // TODO
         return null;
     }
