@@ -10,7 +10,7 @@ The intention of this project is to provide a test bed for developing and implem
   
 ## ConfigTest class
 
-Executing ConfigTest.main() method, the following example output will be produced below. The first string is the encrypted string stored in the OS credential store in Windows OS or KeyChain in macOS. The second set of string output is the decryption of the previous string in clear readable JSON text format. The third string represent a KeyTarConfig object after parsing JSON string. The fourth string represents Zowe Global Team Configuration JSON string read from the  zowe.config.json file, and the last string represents a ZoweTeamConfig object after JSON string passing.    
+Executing ConfigTest.main() method, the following example output will be produced below. The first string is the encrypted string stored in the OS credential store in Windows OS or KeyChain in macOS. The second set of string output is the decryption of the previous string in clear readable JSON text format. The third string represent a KeyTarConfig object after parsing the JSON string. The fourth string represents Zowe Global Team Configuration JSON string read from the  zowe.config.json file, and the last string represents a ZoweTeamConfig object after JSON string parsing.    
 
 eyIvVXNlcnMvZnJhbmNlc2NvZ2lvcmRhbm8vem93ZS5jb25maWcuanNvbiI6eyJwcm9maWxlcy5iYXNlLnByb3BlcnRpZXMudXNlciI6ImZnaW9yZCIsInByb2ZpbGVzLmJhc2UucHJvcGVydGllcy5wYXNzd29yZCI6Ik5FVzRAREFZIn19  
   
