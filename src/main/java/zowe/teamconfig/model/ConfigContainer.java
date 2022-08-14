@@ -1,7 +1,5 @@
 package zowe.teamconfig.model;
 
-import zowe.teamconfig.model.*;
-
 import java.util.List;
 
 public class ConfigContainer {

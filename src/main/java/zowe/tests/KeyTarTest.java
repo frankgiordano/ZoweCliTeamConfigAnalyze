@@ -1,7 +1,7 @@
 package zowe.tests;
 
-import zowe.teamconfig.keytar.KeyTarConfig;
 import zowe.mockdata.KeyTarMockData;
+import zowe.teamconfig.keytar.KeyTarConfig;
 import zowe.teamconfig.service.KeyTarService;
 
 public class KeyTarTest {
