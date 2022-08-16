@@ -1,7 +1,7 @@
 package zowe.teamconfig.service;
 
 import zowe.teamconfig.keytar.KeyTarConfig;
-import zowe.teamconfig.keytar.KeyTarContainer;
+import zowe.teamconfig.keytar.KeyTarImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,22 +10,22 @@ public class KeyTarService {
 
     private final List<String> serviceNames = List.of("Zowe", "Zowe-Plugin");
 
-    public KeyTarConfig getKeyTar(String keyString) throws Exception {
-        KeyTarContainer keyTarContainer = new KeyTarContainer("", "secure_config_props", keyString);
-        return keyTarContainer.getKeyConfigs().get(0);
+    public KeyTarConfig getKeyTarConfig(String keyString) throws Exception {
+        KeyTarImpl keyTarImpl = new KeyTarImpl("", "secure_config_props", keyString);
+        return keyTarImpl.getKeyConfigs().get(0);
     }
 
-    public KeyTarConfig getKeyTar() throws Exception {
+    public KeyTarConfig getKeyTarConfig() throws Exception {
         List<KeyTarConfig> keyTarConfigs = new ArrayList<>();
         for (String serviceName : serviceNames) {
-            KeyTarContainer keyTarContainer = new KeyTarContainer(serviceName, "secure_config_props");
+            KeyTarImpl keyTarImpl = new KeyTarImpl(serviceName, "secure_config_props");
             try {
-                keyTarContainer.processKey();
+                keyTarImpl.processKey();
             } catch (Exception e) {
                 continue;
             }
-            System.out.println(keyTarContainer.getKeyValue());
-            keyTarConfigs = keyTarContainer.getKeyConfigs();
+            System.out.println(keyTarImpl.getKeyTarValue());
+            keyTarConfigs = keyTarImpl.getKeyConfigs();
             break;
         }
         if (keyTarConfigs.isEmpty()) {

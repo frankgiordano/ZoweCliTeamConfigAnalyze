@@ -10,9 +10,9 @@ public class KeyTarTest {
         KeyTarConfig keyTarConfig;
         KeyTarService keyTarService = new KeyTarService();
         try {
-            keyTarConfig = keyTarService.getKeyTar();
+            keyTarConfig = keyTarService.getKeyTarConfig();
         } catch (Exception e) {
-            keyTarConfig = keyTarService.getKeyTar(KeyTarMockData.getSingleJsonString());
+            keyTarConfig = keyTarService.getKeyTarConfig(KeyTarMockData.getSingleJsonString());
         }
         System.out.println(keyTarConfig.toString());
     }
