@@ -11,19 +11,19 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Set;
 
-public class KeyTarContainer implements IKeyContainer {
+public class KeyTarImpl implements IKeyTar {
 
     private final String serviceName;
     private final String accountName;
     private String keyString;
     private final List<KeyTarConfig> keyTarConfigs = new ArrayList<>();
 
-    public KeyTarContainer(String serviceName, String accountName) {
+    public KeyTarImpl(String serviceName, String accountName) {
         this.serviceName = serviceName;
         this.accountName = accountName;
     }
 
-    public KeyTarContainer(String serviceName, String accountName, String keyString) {
+    public KeyTarImpl(String serviceName, String accountName, String keyString) {
         this.serviceName = serviceName;
         this.accountName = accountName;
         this.keyString = keyString;
@@ -69,7 +69,7 @@ public class KeyTarContainer implements IKeyContainer {
     }
 
     @Override
-    public String getKeyValue() throws Exception {
+    public String getKeyTarValue() throws Exception {
         if (keyString == null) {
             throw new Exception("keyString is null, perform processKey first");
         }

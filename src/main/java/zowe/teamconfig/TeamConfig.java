@@ -18,7 +18,7 @@ public class TeamConfig {
     }
 
     public ProfileDao getDefaultProfileByName(String name) throws Exception {
-        var keyTarConfig = keyTarService.getKeyTar();
+        var keyTarConfig = keyTarService.getKeyTarConfig();
         System.out.println(keyTarConfig);
         var teamConfig = teamConfigService.getTeamConfig(keyTarConfig);
         System.out.println(teamConfig);
