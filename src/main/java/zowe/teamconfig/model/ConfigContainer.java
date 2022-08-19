@@ -1,17 +1,18 @@
 package zowe.teamconfig.model;
 
 import java.util.List;
+import java.util.Map;
 
 public class ConfigContainer {
 
     private final List<Partition> partitions;
-    private final Schema schema;
+    private final String schema;
     private final List<Profile> profiles;
-    private final Defaults defaults;
-    private final AutoStore autoStore;
+    private final Map<String, String> defaults;
+    private final String autoStore;
 
-    public ConfigContainer(List<Partition> partitions, Schema schema, List<Profile> profiles,
-                           Defaults defaults, AutoStore autoStore) {
+    public ConfigContainer(List<Partition> partitions, String schema, List<Profile> profiles,
+                           Map<String, String> defaults, String autoStore) {
         this.partitions = partitions;
         this.schema = schema;
         this.profiles = profiles;
@@ -23,7 +24,7 @@ public class ConfigContainer {
         return partitions;
     }
 
-    public Schema getSchema() {
+    public String getSchema() {
         return schema;
     }
 
@@ -31,11 +32,11 @@ public class ConfigContainer {
         return profiles;
     }
 
-    public Defaults getDefaults() {
+    public Map<String, String> getDefaults() {
         return defaults;
     }
 
-    public AutoStore getAutoStore() {
+    public String getAutoStore() {
         return autoStore;
     }
 

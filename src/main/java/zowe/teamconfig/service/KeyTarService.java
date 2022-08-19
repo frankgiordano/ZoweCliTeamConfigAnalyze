@@ -20,7 +20,7 @@ public class KeyTarService {
     public KeyTarConfig getKeyTar() throws Exception {
         List<KeyTarConfig> keyTarConfigs = new ArrayList<>();
         for (String serviceName : serviceNames) {
-            KeyTarContainer keyTarContainer = new KeyTarContainer(serviceName, "ACCOUNT_NAME");
+            KeyTarContainer keyTarContainer = new KeyTarContainer(serviceName, ACCOUNT_NAME);
             try {
                 keyTarContainer.processKey();
             } catch (Exception e) {

@@ -12,10 +12,7 @@ import zowe.teamconfig.types.SectionType;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class TeamConfigService {
 
@@ -33,15 +30,15 @@ public class TeamConfigService {
     }
 
     private ConfigContainer parseJson(JSONObject jsonObj) throws Exception {
-        Schema schema = null;
+        String schema = null;
         List<Profile> profiles = new ArrayList<>();
-        Defaults defaults = null;
-        AutoStore autoStore = null;
+        Map<String, String> defaults = new HashMap<>();
+        String autoStore = null;
         List<Partition> partitions = new ArrayList<>();
         Set<String> jsonSectionKeys = jsonObj.keySet();
         for (String keyVal : jsonSectionKeys) {
             if (SectionType.$SCHEMA.getValue().equals(keyVal)) {
-                schema = new Schema((String) jsonObj.get(SectionType.$SCHEMA.getValue()));
+                schema = (String) jsonObj.get(SectionType.$SCHEMA.getValue());
             }
             if (SectionType.PROFILES.getValue().equals(keyVal)) {
                 // At this point, the JSON will consist of a bunch of profile type sections.
