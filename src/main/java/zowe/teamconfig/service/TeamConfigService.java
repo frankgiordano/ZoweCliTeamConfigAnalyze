@@ -6,7 +6,9 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import zowe.mockdata.TeamConfigMockData;
 import zowe.teamconfig.keytar.KeyTarConfig;
-import zowe.teamconfig.model.*;
+import zowe.teamconfig.model.ConfigContainer;
+import zowe.teamconfig.model.Partition;
+import zowe.teamconfig.model.Profile;
 import zowe.teamconfig.types.ProfileType;
 import zowe.teamconfig.types.SectionType;
 
@@ -67,7 +69,7 @@ public class TeamConfigService {
                 }
             } else if (SectionType.AUTOSTORE.getValue().equals(keyVal)) {
                 autoStore = (Boolean) jsonObj.get(SectionType.AUTOSTORE.getValue());
-            } 
+            }
         }
         return new ConfigContainer(partitions, schema, profiles, defaults, autoStore);
     }
