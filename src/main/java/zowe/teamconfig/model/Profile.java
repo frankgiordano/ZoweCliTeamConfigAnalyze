@@ -3,6 +3,7 @@ package zowe.teamconfig.model;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Profile {
@@ -10,7 +11,7 @@ public class Profile {
     private final String name;
     private final JSONObject jsonPropsObj;
     private final JSONArray secure;
-    private Map<String, String> properties;
+    private Map<String, String> properties = new HashMap<>();
 
     public Profile(String name, JSONObject jsonPropsObj, JSONArray secure) {
         this.name = name;
@@ -20,10 +21,19 @@ public class Profile {
     }
 
     private void parseJsonPropsObj(JSONObject jsonPropsObj) {
-        // example of props json value to parse
-        // properties='{"rejectUnauthorized":false,"host":"mvsxe47.lvn.company.net"}'
-        // parse and populate Map properties variable with key value pairs from json
-        // TODO
+        // example of props json value to parse properties='{"rejectUnauthorized":false,"host":"mvsxe47.lvn.company.net"}'
+        for (Object keyValObj: jsonPropsObj.keySet()){
+            String key = (String) keyValObj;
+            String value = null;
+            try {
+                value = (String) jsonPropsObj.get(key);
+            } catch (Exception e) {
+                if (e.getMessage().contains("java.lang.Long")) {
+                    value = String.valueOf(jsonPropsObj.get(key));
+                }
+            }
+            properties.put(key, value);
+        }
     }
 
     public String getName() {
