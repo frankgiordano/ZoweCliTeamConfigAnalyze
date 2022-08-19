@@ -18,9 +18,9 @@ public class TeamConfig {
     }
 
     public ProfileDao getDefaultProfileByName(String name) throws Exception {
-        var keyTarConfig = keyTarService.getKeyTarConfig();
+        final var keyTarConfig = keyTarService.getKeyTarConfig();
         System.out.println(keyTarConfig);
-        var teamConfig = teamConfigService.getTeamConfig(keyTarConfig);
+        final var teamConfig = teamConfigService.getTeamConfig(keyTarConfig);
         System.out.println(teamConfig);
         var target = teamConfig.getProfiles().stream().filter(i -> name.equals(i.getName())).findFirst();
         var base = teamConfig.getProfiles().stream().filter(i -> "base".equals(i.getName())).findFirst();
@@ -35,8 +35,8 @@ public class TeamConfig {
 
         // check profile properties hashmap variable for host and port values
         // if they don't exist there, then check the base profile properties variable
-        var targetProps = Optional.ofNullable(target.get().getProperties());
-        var baseProps = Optional.ofNullable(base.get().getProperties());
+        final var targetProps = Optional.ofNullable(target.get().getProperties());
+        final var baseProps = Optional.ofNullable(base.get().getProperties());
         Optional<String> host = Optional.empty();
         Optional<String> port = Optional.empty();
         if (targetProps.isPresent()) {

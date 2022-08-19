@@ -10,14 +10,14 @@ public class ConfigTest {
 
     public static void main(String[] args) throws Exception {
         KeyTarConfig keyTarConfig;
-        KeyTarService keyTarService = new KeyTarService();
+        final KeyTarService keyTarService = new KeyTarService();
         try {
             keyTarConfig = keyTarService.getKeyTarConfig();
         } catch (Exception e) {
             keyTarConfig = keyTarService.getKeyTarConfig(KeyTarMockData.getSingleJsonString());
         }
         System.out.println(keyTarConfig.toString());
-        TeamConfigService teamConfigService = new TeamConfigService();
+        final TeamConfigService teamConfigService = new TeamConfigService();
         ConfigContainer teamConfig = teamConfigService.getTeamConfig(keyTarConfig);
         System.out.println(teamConfig.toString());
     }

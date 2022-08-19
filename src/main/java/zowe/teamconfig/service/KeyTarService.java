@@ -13,14 +13,14 @@ public class KeyTarService {
     private final String ERROR_MSG = "No zowe configuration information available";
 
     public KeyTarConfig getKeyTarConfig(String keyString) throws Exception {
-        KeyTarImpl keyTarImpl = new KeyTarImpl("", ACCOUNT_NAME, keyString);
+        final KeyTarImpl keyTarImpl = new KeyTarImpl("", ACCOUNT_NAME, keyString);
         return keyTarImpl.getKeyConfigs().get(0);
     }
 
     public KeyTarConfig getKeyTarConfig() throws Exception {
         List<KeyTarConfig> keyTarConfigs = new ArrayList<>();
         for (String serviceName : serviceNames) {
-            KeyTarImpl keyTarImpl = new KeyTarImpl(serviceName, ACCOUNT_NAME);
+            final KeyTarImpl keyTarImpl = new KeyTarImpl(serviceName, ACCOUNT_NAME);
             try {
                 keyTarImpl.processKey();
             } catch (Exception e) {

@@ -8,8 +8,8 @@ import zowe.teamconfig.service.TeamConfigService;
 public class TeamConfigTest {
 
     public static void main(String[] args) throws Exception {
-        TeamConfig zowe = new TeamConfig(new KeyTarService(), new TeamConfigService());
-        ProfileDao profileDao = zowe.getDefaultProfileByName("zosmf");
+        final TeamConfig zowe = new TeamConfig(new KeyTarService(), new TeamConfigService());
+        final ProfileDao profileDao = zowe.getDefaultProfileByName("zosmf");
         System.out.println(profileDao);
     }
 

@@ -24,18 +24,18 @@ public class TeamConfigService {
         } catch (IOException | ParseException e) {
             obj = parser.parse(TeamConfigMockData.getTeamConfigJsonString());
         }
-        JSONObject jsonObject = (JSONObject) obj;
+        final JSONObject jsonObject = (JSONObject) obj;
         System.out.println(jsonObject);
         return parseJson(jsonObject);
     }
 
     private ConfigContainer parseJson(JSONObject jsonObj) throws Exception {
         String schema = null;
-        List<Profile> profiles = new ArrayList<>();
-        Map<String, String> defaults = new HashMap<>();
+        final List<Profile> profiles = new ArrayList<>();
+        final Map<String, String> defaults = new HashMap<>();
         Boolean autoStore = null;
-        List<Partition> partitions = new ArrayList<>();
-        Set<String> jsonSectionKeys = jsonObj.keySet();
+        final List<Partition> partitions = new ArrayList<>();
+        final Set<String> jsonSectionKeys = jsonObj.keySet();
         for (String keyVal : jsonSectionKeys) {
             if (SectionType.$SCHEMA.getValue().equals(keyVal)) {
                 schema = (String) jsonObj.get(SectionType.$SCHEMA.getValue());
@@ -44,12 +44,12 @@ public class TeamConfigService {
                 // The first section may not be of a profile type. Let's check the first profile
                 // section and determine if it contains a profile type value, if not then it is a
                 // partition section, and we need to parse each partition and its profiles.
-                JSONObject jsonProfileObj = (JSONObject) jsonObj.get(SectionType.PROFILES.getValue());
-                Set<String> jsonProfileKeys = jsonProfileObj.keySet();
-                boolean isPartition = isPartition(jsonProfileKeys);
+                final JSONObject jsonProfileObj = (JSONObject) jsonObj.get(SectionType.PROFILES.getValue());
+                final Set<String> jsonProfileKeys = jsonProfileObj.keySet();
+                final boolean isPartition = isPartition(jsonProfileKeys);
                 if (!isPartition) {
                     for (String profileKeyVal : jsonProfileKeys) {
-                        JSONObject profileTypeJsonObj = (JSONObject) jsonProfileObj.get(profileKeyVal);
+                        final JSONObject profileTypeJsonObj = (JSONObject) jsonProfileObj.get(profileKeyVal);
                         Profile profile = new Profile((String) profileTypeJsonObj.get("type"),
                                 (JSONObject) profileTypeJsonObj.get("properties"),
                                 (JSONArray) profileTypeJsonObj.get("secure"));
@@ -59,10 +59,10 @@ public class TeamConfigService {
                     // TODO
                 }
             } else if (SectionType.DEFAULTS.getValue().equals(keyVal)) {
-                JSONObject keyValues = (JSONObject) jsonObj.get(SectionType.DEFAULTS.getValue());
+                final JSONObject keyValues = (JSONObject) jsonObj.get(SectionType.DEFAULTS.getValue());
                 for (Object defaultKeyVal : keyValues.keySet()) {
-                    String key = (String) defaultKeyVal;
-                    String value = (String) keyValues.get(key);
+                    final String key = (String) defaultKeyVal;
+                    final String value = (String) keyValues.get(key);
                     defaults.put(key, value);
                 }
             } else if (SectionType.AUTOSTORE.getValue().equals(keyVal)) {
@@ -77,7 +77,7 @@ public class TeamConfigService {
     }
 
     private boolean isPartition(Set<String> profileKeyObj) throws Exception {
-        Iterator<String> itr = profileKeyObj.iterator();
+        final Iterator<String> itr = profileKeyObj.iterator();
         if (itr.hasNext()) {
             String keyVal = itr.next();
             return isPartition(keyVal);
