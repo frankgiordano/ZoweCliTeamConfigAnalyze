@@ -33,14 +33,13 @@ public class TeamConfigService {
         String schema = null;
         List<Profile> profiles = new ArrayList<>();
         Map<String, String> defaults = new HashMap<>();
-        String autoStore = null;
+        Boolean autoStore = null;
         List<Partition> partitions = new ArrayList<>();
         Set<String> jsonSectionKeys = jsonObj.keySet();
         for (String keyVal : jsonSectionKeys) {
             if (SectionType.$SCHEMA.getValue().equals(keyVal)) {
                 schema = (String) jsonObj.get(SectionType.$SCHEMA.getValue());
-            }
-            if (SectionType.PROFILES.getValue().equals(keyVal)) {
+            } else if (SectionType.PROFILES.getValue().equals(keyVal)) {
                 // At this point, the JSON will consist of a bunch of profile type sections.
                 // The first section may not be of a profile type. Let's check the first profile
                 // section and determine if it contains a profile type value, if not then it is a
@@ -59,11 +58,18 @@ public class TeamConfigService {
                 } else {
                     // TODO
                 }
-            }
-            if (SectionType.DEFAULTS.getValue().equals(keyVal)) {
-                // TODO
-            }
-            if (SectionType.AUTOSTORE.getValue().equals(keyVal)) {
+            } else if (SectionType.DEFAULTS.getValue().equals(keyVal)) {
+                JSONObject keyValues = (JSONObject) jsonObj.get(SectionType.DEFAULTS.getValue());
+                for (Object defaultKeyVal : keyValues.keySet()) {
+                    String key = (String) defaultKeyVal;
+                    String value = (String) keyValues.get(key);
+                    defaults.put(key, value);
+                }
+            } else if (SectionType.AUTOSTORE.getValue().equals(keyVal)) {
+                autoStore = (Boolean) jsonObj.get(SectionType.AUTOSTORE.getValue());
+            } else {
+                // if we reach here a custom profile type section was entered by the end user lets parse it into a
+                // Profile object too..
                 // TODO
             }
         }

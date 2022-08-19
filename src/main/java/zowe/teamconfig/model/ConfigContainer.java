@@ -9,10 +9,10 @@ public class ConfigContainer {
     private final String schema;
     private final List<Profile> profiles;
     private final Map<String, String> defaults;
-    private final String autoStore;
+    private final Boolean autoStore;
 
     public ConfigContainer(List<Partition> partitions, String schema, List<Profile> profiles,
-                           Map<String, String> defaults, String autoStore) {
+                           Map<String, String> defaults, Boolean autoStore) {
         this.partitions = partitions;
         this.schema = schema;
         this.profiles = profiles;
@@ -36,7 +36,7 @@ public class ConfigContainer {
         return defaults;
     }
 
-    public String getAutoStore() {
+    public Boolean getAutoStore() {
         return autoStore;
     }
 
