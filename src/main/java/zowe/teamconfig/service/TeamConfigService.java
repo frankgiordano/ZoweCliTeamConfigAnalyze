@@ -67,11 +67,7 @@ public class TeamConfigService {
                 }
             } else if (SectionType.AUTOSTORE.getValue().equals(keyVal)) {
                 autoStore = (Boolean) jsonObj.get(SectionType.AUTOSTORE.getValue());
-            } else {
-                // if we reach here a custom profile type section was entered by the end user lets parse it into a
-                // Profile object too..
-                // TODO
-            }
+            } 
         }
         return new ConfigContainer(partitions, schema, profiles, defaults, autoStore);
     }
