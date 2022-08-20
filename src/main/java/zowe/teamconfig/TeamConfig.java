@@ -21,15 +21,15 @@ public class TeamConfig {
 
     public ProfileDao getDefaultProfileByName(String name) throws Exception {
         final var keyTarConfig = keyTarService.getKeyTarConfig();
-        System.out.println(keyTarConfig);
         final var teamConfig = teamConfigService.getTeamConfig(keyTarConfig);
+        final var defaultName = Optional.ofNullable(teamConfig.getDefaults().get(name));
+        final Predicate<Profile> isProfileName = i -> i.getName().equals(defaultName.orElse(name));
+        final Predicate<Profile> isBaseProfile = i -> i.getName().equals("base");
+        final var target = teamConfig.getProfiles().stream().filter(isProfileName).findFirst();
+        final var base = teamConfig.getProfiles().stream().filter(isBaseProfile).findFirst();
+        System.out.println(keyTarConfig);
         System.out.println(teamConfig);
-        Predicate<Profile> isProfileName = i -> i.getName().equals(name);
-        Predicate<Profile> isBaseProfile = i -> i.getName().equals("base");
-        var target = teamConfig.getProfiles().stream().filter(isProfileName).findFirst();
-        var base = teamConfig.getProfiles().stream().filter(isBaseProfile).findFirst();
-        // check team config defaults object for default name value
-        // TODO
+
         if (target.isEmpty()) {
             throw new Exception("No Zowe team config " + name + " profile found");
         }
