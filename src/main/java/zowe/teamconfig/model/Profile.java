@@ -21,6 +21,9 @@ public class Profile {
     }
 
     private void parseJsonPropsObj(JSONObject jsonPropsObj) {
+        if (jsonPropsObj == null) {
+            return;
+        }
         // example of props json value to parse properties='{"rejectUnauthorized":false,"host":"mvsxe47.lvn.company.net"}'
         for (Object keyValObj : jsonPropsObj.keySet()) {
             String key = (String) keyValObj;

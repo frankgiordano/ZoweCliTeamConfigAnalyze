@@ -37,36 +37,33 @@ public class TeamConfigService {
         Boolean autoStore = null;
         final List<Partition> partitions = new ArrayList<>();
         final Set<String> jsonSectionKeys = jsonObj.keySet();
-        for (String keyVal : jsonSectionKeys) {
-            if (SectionType.$SCHEMA.getValue().equals(keyVal)) {
+        for (String keySectionVal : jsonSectionKeys) {
+            if (SectionType.$SCHEMA.getValue().equals(keySectionVal)) {
                 schema = (String) jsonObj.get(SectionType.$SCHEMA.getValue());
-            } else if (SectionType.PROFILES.getValue().equals(keyVal)) {
-                // At this point, the JSON will consist of a bunch of profile type sections.
-                // The first section may not be of a profile type. Let's check the first profile
-                // section and determine if it contains a profile type value, if not then it is a
-                // partition section, and we need to parse each partition and its profiles.
+            } else if (SectionType.PROFILES.getValue().equals(keySectionVal)) {
                 final JSONObject jsonProfileObj = (JSONObject) jsonObj.get(SectionType.PROFILES.getValue());
                 final Set<String> jsonProfileKeys = jsonProfileObj.keySet();
-                final boolean isPartition = isPartition(jsonProfileKeys);
-                if (!isPartition) {
-                    for (String profileKeyVal : jsonProfileKeys) {
-                        final JSONObject profileTypeJsonObj = (JSONObject) jsonProfileObj.get(profileKeyVal);
+                for (String profileKeyVal : jsonProfileKeys) {
+                    final JSONObject profileTypeJsonObj = (JSONObject) jsonProfileObj.get(profileKeyVal);
+                    Set<String> isEmbeddedKeyProfile = profileTypeJsonObj.keySet();
+                    if (isPartition(isEmbeddedKeyProfile)) {
+                        System.out.println("Partition found");
+                        // TODO
+                    } else {
                         Profile profile = new Profile((String) profileTypeJsonObj.get("type"),
                                 (JSONObject) profileTypeJsonObj.get("properties"),
                                 (JSONArray) profileTypeJsonObj.get("secure"));
                         profiles.add(profile);
                     }
-                } else {
-                    // TODO
                 }
-            } else if (SectionType.DEFAULTS.getValue().equals(keyVal)) {
+            } else if (SectionType.DEFAULTS.getValue().equals(keySectionVal)) {
                 final JSONObject keyValues = (JSONObject) jsonObj.get(SectionType.DEFAULTS.getValue());
                 for (Object defaultKeyVal : keyValues.keySet()) {
                     final String key = (String) defaultKeyVal;
                     final String value = (String) keyValues.get(key);
                     defaults.put(key, value);
                 }
-            } else if (SectionType.AUTOSTORE.getValue().equals(keyVal)) {
+            } else if (SectionType.AUTOSTORE.getValue().equals(keySectionVal)) {
                 autoStore = (Boolean) jsonObj.get(SectionType.AUTOSTORE.getValue());
             }
         }
@@ -77,7 +74,9 @@ public class TeamConfigService {
         final Iterator<String> itr = profileKeyObj.iterator();
         if (itr.hasNext()) {
             String keyVal = itr.next();
-//            return isPartition(keyVal);
+            if (SectionType.PROFILES.getValue().equals(keyVal)) {
+                return true;
+            }
             return false;
         } else {
             throw new Exception("Profile type detail missing in profile section.");
