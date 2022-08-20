@@ -1,11 +1,13 @@
 package zowe.teamconfig;
 
+import zowe.teamconfig.model.Profile;
 import zowe.teamconfig.model.ProfileDao;
 import zowe.teamconfig.service.KeyTarService;
 import zowe.teamconfig.service.TeamConfigService;
 import zowe.teamconfig.types.ProfileType;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class TeamConfig {
 
@@ -22,8 +24,10 @@ public class TeamConfig {
         System.out.println(keyTarConfig);
         final var teamConfig = teamConfigService.getTeamConfig(keyTarConfig);
         System.out.println(teamConfig);
-        var target = teamConfig.getProfiles().stream().filter(i -> name.equals(i.getName())).findFirst();
-        var base = teamConfig.getProfiles().stream().filter(i -> "base".equals(i.getName())).findFirst();
+        Predicate<Profile> isProfileName = i -> i.getName().equals(name);
+        Predicate<Profile> isBaseProfile = i -> i.getName().equals("base");
+        var target = teamConfig.getProfiles().stream().filter(isProfileName).findFirst();
+        var base = teamConfig.getProfiles().stream().filter(isBaseProfile).findFirst();
         // check team config defaults object for default name value
         // TODO
         if (target.isEmpty()) {
