@@ -4,7 +4,6 @@ import zowe.teamconfig.model.Profile;
 import zowe.teamconfig.model.ProfileDao;
 import zowe.teamconfig.service.KeyTarService;
 import zowe.teamconfig.service.TeamConfigService;
-import zowe.teamconfig.types.ProfileType;
 
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -56,21 +55,6 @@ public class TeamConfig {
 
         return new ProfileDao(target.get(), keyTarConfig.getUserName(), keyTarConfig.getPassword(),
                 host.orElse(null), port.orElse(null));
-    }
-
-    public ProfileDao getDefaultProfileByType(ProfileType type) {
-        // TODO
-        return null;
-    }
-
-    public ProfileDao getDefaultPartitionProfileByName(String partitionName, String profileName) {
-        // TODO
-        return null;
-    }
-
-    public ProfileDao getDefaultPartitionProfileByType(String partitionName, ProfileType type) {
-        // TODO
-        return null;
     }
 
 }

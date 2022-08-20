@@ -9,7 +9,6 @@ import zowe.teamconfig.keytar.KeyTarConfig;
 import zowe.teamconfig.model.ConfigContainer;
 import zowe.teamconfig.model.Partition;
 import zowe.teamconfig.model.Profile;
-import zowe.teamconfig.types.ProfileType;
 import zowe.teamconfig.types.SectionType;
 
 import java.io.FileReader;
@@ -78,20 +77,11 @@ public class TeamConfigService {
         final Iterator<String> itr = profileKeyObj.iterator();
         if (itr.hasNext()) {
             String keyVal = itr.next();
-            return isPartition(keyVal);
+//            return isPartition(keyVal);
+            return false;
         } else {
             throw new Exception("Profile type detail missing in profile section.");
         }
     }
-
-    private boolean isPartition(String type) {
-        return !ProfileType.SSH.getValue().equals(type) &&
-                !ProfileType.BASE.getValue().equals(type) &&
-                !ProfileType.SYSVIEW.getValue().equals(type) &&
-                !ProfileType.SYSVIEWFORMAT.getValue().equals(type) &&
-                !ProfileType.TSO.getValue().equals(type) &&
-                !ProfileType.ZOSMF.getValue().equals(type);
-    }
-
 
 }
