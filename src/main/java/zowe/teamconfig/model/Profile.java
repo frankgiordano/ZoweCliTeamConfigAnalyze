@@ -52,7 +52,6 @@ public class Profile {
     public String toString() {
         return "Profile{" +
                 "name='" + name + '\'' +
-                ", jsonPropsObj=" + jsonPropsObj +
                 ", secure=" + secure +
                 ", properties=" + properties +
                 '}';
