@@ -43,11 +43,12 @@ public class TeamConfigService {
             } else if (SectionType.PROFILES.getValue().equals(keySectionVal)) {
                 final JSONObject jsonProfileObj = (JSONObject) jsonObj.get(SectionType.PROFILES.getValue());
                 final Set<String> jsonProfileKeys = jsonProfileObj.keySet();
-                for (String profileKeyVal : jsonProfileKeys) {
+                for (final String profileKeyVal : jsonProfileKeys) {
                     final JSONObject profileTypeJsonObj = (JSONObject) jsonProfileObj.get(profileKeyVal);
                     Set<String> isEmbeddedKeyProfile = profileTypeJsonObj.keySet();
                     if (isPartition(isEmbeddedKeyProfile)) {
-                        System.out.println("Partition found");
+                        final var partitionName = profileKeyVal;
+                        System.out.println("Partition found name " + partitionName + " containing: " + profileTypeJsonObj);
                         // TODO
                     } else {
                         Profile profile = new Profile((String) profileTypeJsonObj.get("type"),
@@ -58,7 +59,7 @@ public class TeamConfigService {
                 }
             } else if (SectionType.DEFAULTS.getValue().equals(keySectionVal)) {
                 final JSONObject keyValues = (JSONObject) jsonObj.get(SectionType.DEFAULTS.getValue());
-                for (Object defaultKeyVal : keyValues.keySet()) {
+                for (final Object defaultKeyVal : keyValues.keySet()) {
                     final String key = (String) defaultKeyVal;
                     final String value = (String) keyValues.get(key);
                     defaults.put(key, value);
