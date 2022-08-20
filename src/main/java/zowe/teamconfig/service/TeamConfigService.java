@@ -37,7 +37,7 @@ public class TeamConfigService {
         Boolean autoStore = null;
         final List<Partition> partitions = new ArrayList<>();
         final Set<String> jsonSectionKeys = jsonObj.keySet();
-        for (String keySectionVal : jsonSectionKeys) {
+        for (final String keySectionVal : jsonSectionKeys) {
             if (SectionType.$SCHEMA.getValue().equals(keySectionVal)) {
                 schema = (String) jsonObj.get(SectionType.$SCHEMA.getValue());
             } else if (SectionType.PROFILES.getValue().equals(keySectionVal)) {

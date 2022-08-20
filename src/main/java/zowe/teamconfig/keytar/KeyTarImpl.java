@@ -31,8 +31,8 @@ public class KeyTarImpl implements IKeyTar {
 
     @Override
     public void processKey() throws KeytarException {
-        Keytar instance = Keytar.getInstance();
-        String encodedString = instance.getPassword(serviceName, accountName);
+        final Keytar instance = Keytar.getInstance();
+        final String encodedString = instance.getPassword(serviceName, accountName);
         System.out.println(encodedString);
         if (encodedString == null) {
             throw new NullPointerException("Unknown service name or account name");
@@ -56,10 +56,10 @@ public class KeyTarImpl implements IKeyTar {
     }
 
     private List<KeyTarConfig> parseJson() throws ParseException {
-        JSONObject jsonKeyTar = (JSONObject) new JSONParser().parse(keyString);
-        Set<String> keyTarKeys = jsonKeyTar.keySet();
-        for (String keyVal : keyTarKeys) {
-            JSONObject jsonVal = (JSONObject) jsonKeyTar.get(keyVal);
+        final JSONObject jsonKeyTar = (JSONObject) new JSONParser().parse(keyString);
+        final Set<String> keyTarKeys = jsonKeyTar.keySet();
+        for (final String keyVal : keyTarKeys) {
+            final JSONObject jsonVal = (JSONObject) jsonKeyTar.get(keyVal);
             keyTarConfigs.add(new KeyTarConfig(keyVal,
                     (String) jsonVal.get("profiles.base.properties.user"),
                     (String) jsonVal.get("profiles.base.properties.password")));
