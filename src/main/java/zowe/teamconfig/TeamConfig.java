@@ -57,4 +57,9 @@ public class TeamConfig {
                 host.orElse(null), port.orElse(null));
     }
 
+    public ProfileDao getDefaultProfileFromPartitionByName(String profileName, String partitionName) {
+        // TODO
+        return null;
+    }
+
 }
