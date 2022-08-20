@@ -51,8 +51,7 @@ public class TeamConfig {
         }
 
         return new ProfileDao(target.get(), keyTarConfig.getUserName(), keyTarConfig.getPassword(),
-                host.orElseThrow(() -> new RuntimeException("No host found for profile")),
-                port.orElseThrow(() -> new RuntimeException("No port found for profile")));
+                host.orElse(null), port.orElse(null));
     }
 
     public ProfileDao getDefaultProfileByType(ProfileType type) {
