@@ -9,7 +9,9 @@ public class TeamConfigTest {
 
     public static void main(String[] args) throws Exception {
         final TeamConfig zowe = new TeamConfig(new KeyTarService(), new TeamConfigService());
-        final ProfileDao profileDao = zowe.getDefaultProfileByName("zosmf");
+        ProfileDao profileDao = zowe.getDefaultProfileByName("zosmf");
+        System.out.println(profileDao);
+        profileDao = zowe.getDefaultProfileFromPartitionByName("zosmf", "Liar");
         System.out.println(profileDao);
     }
 
