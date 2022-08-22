@@ -9,15 +9,13 @@ import java.util.Map;
 public class Profile {
 
     private final String name;
-    private final JSONObject jsonPropsObj;
     private final JSONArray secure;
     private final Map<String, String> properties = new HashMap<>();
 
-    public Profile(String name, JSONObject jsonPropsObj, JSONArray secure) {
+    public Profile(String name, JSONObject object, JSONArray secure) {
         this.name = name;
-        this.jsonPropsObj = jsonPropsObj;
         this.secure = secure;
-        this.parseJsonPropsObj(this.jsonPropsObj);
+        this.parseJsonPropsObj(object);
     }
 
     private void parseJsonPropsObj(JSONObject jsonPropsObj) {
