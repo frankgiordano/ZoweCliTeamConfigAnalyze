@@ -11,7 +11,7 @@ public class Profile {
     private final String name;
     private final JSONObject jsonPropsObj;
     private final JSONArray secure;
-    private Map<String, String> properties = new HashMap<>();
+    private final Map<String, String> properties = new HashMap<>();
 
     public Profile(String name, JSONObject jsonPropsObj, JSONArray secure) {
         this.name = name;

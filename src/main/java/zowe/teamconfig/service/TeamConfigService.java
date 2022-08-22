@@ -45,7 +45,7 @@ public class TeamConfigService {
                 final Set<String> jsonProfileKeys = jsonProfileObj.keySet();
                 for (final String profileKeyVal : jsonProfileKeys) {
                     final JSONObject profileTypeJsonObj = (JSONObject) jsonProfileObj.get(profileKeyVal);
-                    Set<String> isEmbeddedKeyProfile = profileTypeJsonObj.keySet();
+                    final Set<String> isEmbeddedKeyProfile = profileTypeJsonObj.keySet();
                     if (isPartition(isEmbeddedKeyProfile)) {
                         final var partitionName = profileKeyVal;
                         System.out.println("Partition found name " + partitionName + " containing: " + profileTypeJsonObj);
