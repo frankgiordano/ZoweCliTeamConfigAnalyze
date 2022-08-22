@@ -75,10 +75,7 @@ public class TeamConfigService {
         final Iterator<String> itr = profileKeyObj.iterator();
         if (itr.hasNext()) {
             String keyVal = itr.next();
-            if (SectionType.PROFILES.getValue().equals(keyVal)) {
-                return true;
-            }
-            return false;
+            return SectionType.PROFILES.getValue().equals(keyVal);
         } else {
             throw new Exception("Profile type detail missing in profile section.");
         }
