@@ -15,6 +15,10 @@ public class Partition {
         this.profiles = profiles;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Map<String, String> getProfileProperties() {
         return profileProperties;
     }

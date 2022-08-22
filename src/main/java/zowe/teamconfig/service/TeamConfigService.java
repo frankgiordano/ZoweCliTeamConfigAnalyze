@@ -47,9 +47,7 @@ public class TeamConfigService {
                     final JSONObject profileTypeJsonObj = (JSONObject) jsonProfileObj.get(profileKeyVal);
                     final Set<String> isEmbeddedKeyProfile = profileTypeJsonObj.keySet();
                     if (isPartition(isEmbeddedKeyProfile)) {
-                        final var partitionName = profileKeyVal;
-                        System.out.println("Partition found name " + partitionName + " containing: " + profileTypeJsonObj);
-                        // TODO
+                        partitions.add(getPartition(profileKeyVal, profileTypeJsonObj));
                     } else {
                         Profile profile = new Profile((String) profileTypeJsonObj.get("type"),
                                 (JSONObject) profileTypeJsonObj.get("properties"),
@@ -69,6 +67,26 @@ public class TeamConfigService {
             }
         }
         return new ConfigContainer(partitions, schema, profiles, defaults, autoStore);
+    }
+
+    private Partition getPartition(String name, JSONObject jsonObject) {
+        final Set<String> KeyObjs = jsonObject.keySet();
+        final List<Profile> profiles = new ArrayList<>();
+        System.out.println("Partition found name " + name + " containing: " + jsonObject);
+        for (final Object keyVal : KeyObjs) {
+            if (SectionType.PROFILES.getValue().equals(keyVal)) {
+                final JSONObject jsonProfileObj = (JSONObject) jsonObject.get(SectionType.PROFILES.getValue());
+                final Set<String> jsonProfileKeys = jsonProfileObj.keySet();
+                for (final String profileKeyVal : jsonProfileKeys) {
+                    final JSONObject profileTypeJsonObj = (JSONObject) jsonProfileObj.get(profileKeyVal);
+                    Profile profile = new Profile((String) profileTypeJsonObj.get("type"),
+                            (JSONObject) profileTypeJsonObj.get("properties"),
+                            (JSONArray) profileTypeJsonObj.get("secure"));
+                    profiles.add(profile);
+                }
+            }
+        }
+        return new Partition(name, null, profiles);
     }
 
     private boolean isPartition(Set<String> profileKeyObj) throws Exception {
