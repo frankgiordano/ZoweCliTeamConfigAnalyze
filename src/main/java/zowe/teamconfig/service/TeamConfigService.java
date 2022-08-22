@@ -49,10 +49,9 @@ public class TeamConfigService {
                     if (isPartition(isEmbeddedKeyProfile)) {
                         partitions.add(getPartition(profileKeyVal, profileTypeJsonObj));
                     } else {
-                        Profile profile = new Profile((String) profileTypeJsonObj.get("type"),
+                        profiles.add(new Profile((String) profileTypeJsonObj.get("type"),
                                 (JSONObject) profileTypeJsonObj.get("properties"),
-                                (JSONArray) profileTypeJsonObj.get("secure"));
-                        profiles.add(profile);
+                                (JSONArray) profileTypeJsonObj.get("secure")));
                     }
                 }
             } else if (SectionType.DEFAULTS.getValue().equals(keySectionVal)) {
@@ -70,19 +69,18 @@ public class TeamConfigService {
     }
 
     private Partition getPartition(String name, JSONObject jsonObject) {
-        final Set<String> KeyObjs = jsonObject.keySet();
+        final Set<String> keyObjs = jsonObject.keySet();
         final List<Profile> profiles = new ArrayList<>();
         System.out.println("Partition found name " + name + " containing: " + jsonObject);
-        for (final Object keyVal : KeyObjs) {
+        for (final Object keyVal : keyObjs) {
             if (SectionType.PROFILES.getValue().equals(keyVal)) {
                 final JSONObject jsonProfileObj = (JSONObject) jsonObject.get(SectionType.PROFILES.getValue());
                 final Set<String> jsonProfileKeys = jsonProfileObj.keySet();
                 for (final String profileKeyVal : jsonProfileKeys) {
                     final JSONObject profileTypeJsonObj = (JSONObject) jsonProfileObj.get(profileKeyVal);
-                    Profile profile = new Profile((String) profileTypeJsonObj.get("type"),
+                    profiles.add(new Profile((String) profileTypeJsonObj.get("type"),
                             (JSONObject) profileTypeJsonObj.get("properties"),
-                            (JSONArray) profileTypeJsonObj.get("secure"));
-                    profiles.add(profile);
+                            (JSONArray) profileTypeJsonObj.get("secure")));
                 }
             }
         }
