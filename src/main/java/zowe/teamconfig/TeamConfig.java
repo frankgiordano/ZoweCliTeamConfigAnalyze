@@ -75,8 +75,6 @@ public class TeamConfig {
     }
 
     private void merge(Optional<Profile> target, Optional<Profile> base) {
-        // check profile properties hashmap variable for host and port values
-        // if they don't exist there, then check the base profile properties variable
         final var targetProps = Optional.ofNullable(target.get().getProperties());
         final var baseProps = Optional.ofNullable(base.get().getProperties());
         if (mergeProperties.getHost().isEmpty() && targetProps.isPresent()) {
