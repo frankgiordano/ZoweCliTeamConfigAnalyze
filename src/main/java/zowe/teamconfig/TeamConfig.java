@@ -21,9 +21,10 @@ public class TeamConfig {
     private KeyTarConfig keyTarConfig;
     private ConfigContainer teamConfig;
 
-    public TeamConfig(KeyTarService keyTarService, TeamConfigService teamConfigService) {
+    public TeamConfig(KeyTarService keyTarService, TeamConfigService teamConfigService) throws Exception {
         this.keyTarService = keyTarService;
         this.teamConfigService = teamConfigService;
+        config();
     }
 
     private void config() throws Exception {
@@ -34,8 +35,6 @@ public class TeamConfig {
     }
 
     public ProfileDao getDefaultProfileByName(String name) throws Exception {
-        config();
-
         final var defaultName = Optional.ofNullable(teamConfig.getDefaults().get(name));
         final Predicate<Profile> isProfileName = i -> i.getName().equals(defaultName.orElse(name));
         final var base = teamConfig.getProfiles().stream().filter(isBaseProfile).findFirst();
@@ -51,8 +50,6 @@ public class TeamConfig {
     }
 
     public ProfileDao getDefaultProfileFromPartitionByName(String profileName, String partitionName) throws Exception {
-        config();
-
         final var defaultName = Optional.ofNullable(teamConfig.getDefaults().get(profileName));
         final Predicate<Profile> isProfileName = i -> i.getName().equals(defaultName.orElse(profileName));
         final Predicate<Partition> isPartitionName = i -> i.getName().equals(partitionName);
