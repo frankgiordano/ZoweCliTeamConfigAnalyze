@@ -1,4 +1,4 @@
-package zowe.teamconfig;
+package zowe.teamconfig.utility;
 
 import org.json.simple.JSONObject;
 

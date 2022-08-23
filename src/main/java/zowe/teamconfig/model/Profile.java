@@ -2,7 +2,7 @@ package zowe.teamconfig.model;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import zowe.teamconfig.TeamConfigUtils;
+import zowe.teamconfig.utility.TeamConfigUtils;
 
 import java.util.Map;
 
