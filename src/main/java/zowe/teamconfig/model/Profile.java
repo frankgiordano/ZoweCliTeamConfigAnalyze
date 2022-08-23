@@ -2,39 +2,20 @@ package zowe.teamconfig.model;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import zowe.teamconfig.TeamConfigUtils;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class Profile {
 
     private final String name;
     private final JSONArray secure;
-    private final Map<String, String> properties = new HashMap<>();
+    private Map<String, String> properties;
 
-    public Profile(String name, JSONObject object, JSONArray secure) {
+    public Profile(String name, JSONObject obj, JSONArray secure) {
         this.name = name;
         this.secure = secure;
-        this.parseJsonPropsObj(object);
-    }
-
-    private void parseJsonPropsObj(JSONObject jsonPropsObj) {
-        if (jsonPropsObj == null) {
-            return;
-        }
-        // example of props json value to parse properties='{"rejectUnauthorized":false,"host":"mvsxe47.lvn.company.net"}'
-        for (final Object keyValObj : jsonPropsObj.keySet()) {
-            final String key = (String) keyValObj;
-            String value = null;
-            try {
-                value = (String) jsonPropsObj.get(key);
-            } catch (Exception e) {
-                if (e.getMessage().contains("java.lang.Long")) {
-                    value = String.valueOf(jsonPropsObj.get(key));
-                }
-            }
-            properties.put(key, value);
-        }
+        properties = TeamConfigUtils.parseJsonPropsObj(obj);
     }
 
     public String getName() {

@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import zowe.mockdata.TeamConfigMockData;
+import zowe.teamconfig.TeamConfigUtils;
 import zowe.teamconfig.keytar.KeyTarConfig;
 import zowe.teamconfig.model.ConfigContainer;
 import zowe.teamconfig.model.Partition;
@@ -32,10 +33,11 @@ public class TeamConfigService {
 
     private ConfigContainer parseJson(JSONObject jsonObj) throws Exception {
         String schema = null;
+        Boolean autoStore = null;
         final List<Profile> profiles = new ArrayList<>();
         final Map<String, String> defaults = new HashMap<>();
-        Boolean autoStore = null;
         final List<Partition> partitions = new ArrayList<>();
+
         final Set<String> jsonSectionKeys = jsonObj.keySet();
         for (final String keySectionVal : jsonSectionKeys) {
             if (SectionType.$SCHEMA.getValue().equals(keySectionVal)) {
@@ -65,14 +67,17 @@ public class TeamConfigService {
                 autoStore = (Boolean) jsonObj.get(SectionType.AUTOSTORE.getValue());
             }
         }
+
         return new ConfigContainer(partitions, schema, profiles, defaults, autoStore);
     }
 
     private Partition getPartition(String name, JSONObject jsonObject) {
         final Set<String> keyObjs = jsonObject.keySet();
         final List<Profile> profiles = new ArrayList<>();
+        Map<String, String> properties = new HashMap<>();
         System.out.println("Partition found name " + name + " containing: " + jsonObject);
-        for (final Object keyVal : keyObjs) {
+        for (final Object keyObj : keyObjs) {
+            final var keyVal = (String) keyObj;
             if (SectionType.PROFILES.getValue().equals(keyVal)) {
                 final JSONObject jsonProfileObj = (JSONObject) jsonObject.get(SectionType.PROFILES.getValue());
                 final Set<String> jsonProfileKeys = jsonProfileObj.keySet();
@@ -82,9 +87,11 @@ public class TeamConfigService {
                             (JSONObject) profileTypeJsonObj.get("properties"),
                             (JSONArray) profileTypeJsonObj.get("secure")));
                 }
+            } else if ("properties".equalsIgnoreCase(keyVal)) {
+                properties = TeamConfigUtils.parseJsonPropsObj((JSONObject) jsonObject.get(keyVal));
             }
         }
-        return new Partition(name, null, profiles);
+        return new Partition(name, properties, profiles);
     }
 
     private boolean isPartition(Set<String> profileKeyObj) throws Exception {
