@@ -6,12 +6,12 @@ import java.util.Map;
 public class Partition {
 
     private final String name;
-    private final Map<String, String> profileProperties;
+    private final Map<String, String> properties;
     private final List<Profile> profiles;
 
-    public Partition(String name, Map<String, String> profileProperties, List<Profile> profiles) {
+    public Partition(String name, Map<String, String> properties, List<Profile> profiles) {
         this.name = name;
-        this.profileProperties = profileProperties;
+        this.properties = properties;
         this.profiles = profiles;
     }
 
@@ -19,8 +19,8 @@ public class Partition {
         return name;
     }
 
-    public Map<String, String> getProfileProperties() {
-        return profileProperties;
+    public Map<String, String> getProperties() {
+        return properties;
     }
 
     public List<Profile> getProfiles() {
@@ -31,7 +31,7 @@ public class Partition {
     public String toString() {
         return "Partition{" +
                 "name='" + name + '\'' +
-                ", profileProperties=" + profileProperties +
+                ", properties=" + properties +
                 ", profiles=" + profiles +
                 '}';
     }
