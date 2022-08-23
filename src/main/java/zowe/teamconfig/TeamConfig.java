@@ -68,6 +68,10 @@ public class TeamConfig {
             throw new Exception("Profile " + profileName + " within partition not found");
         }
 
+        final var props = partition.get().getProperties();
+        mergeProperties.setHost(props.get("host"));
+        mergeProperties.setPort(props.get("port"));
+
         merge(target, base);
         return new ProfileDao(target.get(), keyTarConfig.getUserName(), keyTarConfig.getPassword(),
                 mergeProperties.getHost().orElse(null), mergeProperties.getPort().orElse(null));
@@ -78,15 +82,17 @@ public class TeamConfig {
         // if they don't exist there, then check the base profile properties variable
         final var targetProps = Optional.ofNullable(target.get().getProperties());
         final var baseProps = Optional.ofNullable(base.get().getProperties());
-        if (targetProps.isPresent()) {
-            mergeProperties.setHost(Optional.ofNullable(targetProps.get().get("host")));
-            mergeProperties.setPort(Optional.ofNullable(targetProps.get().get("port")));
+        if (mergeProperties.getHost().isEmpty() && targetProps.isPresent()) {
+            mergeProperties.setHost(targetProps.get().get("host"));
+        }
+        if (mergeProperties.getPort().isEmpty() && targetProps.isPresent()) {
+            mergeProperties.setPort(targetProps.get().get("port"));
         }
         if (mergeProperties.getHost().isEmpty() && baseProps.isPresent()) {
-            mergeProperties.setHost(Optional.ofNullable(baseProps.get().get("host")));
+            mergeProperties.setHost(baseProps.get().get("host"));
         }
         if (mergeProperties.getPort().isEmpty() && baseProps.isPresent()) {
-            mergeProperties.setPort(Optional.ofNullable(baseProps.get().get("port")));
+            mergeProperties.setPort(baseProps.get().get("port"));
         }
     }
 
@@ -98,16 +104,16 @@ public class TeamConfig {
             return host;
         }
 
-        public void setHost(Optional<String> host) {
-            this.host = host;
+        public void setHost(String host) {
+            this.host = Optional.ofNullable(host);
         }
 
         public Optional<String> getPort() {
             return port;
         }
 
-        public void setPort(Optional<String> port) {
-            this.port = port;
+        public void setPort(String port) {
+            this.port = Optional.ofNullable(port);
         }
     }
 
